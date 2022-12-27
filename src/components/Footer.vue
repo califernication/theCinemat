@@ -98,7 +98,7 @@ const navigation = {
     },
     {
       name: 'Instagram',
-      href: 'instagram.com/yalecinemat/',
+      href: 'https://www.instagram.com/yalecinemat/',
       icon: defineComponent({
         render: () =>
           h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [

@@ -1,10 +1,9 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <Popover class="relative bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
-          <a href="#">
+          <a href="/">
             <span class="sr-only">Workflow</span>
             <img class="h-8 w-auto sm:h-10" src="../assets/inverted-icon.svg" alt="" />
           </a>
@@ -53,6 +52,8 @@
 
           <a href="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </a>
           <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900"> Workshops </a>
+          <!-- About -->
+          <a href="/about" class="text-base font-medium text-gray-500 hover:text-gray-900"> About </a>
 
           <Popover class="relative" v-slot="{ open }">
             <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light']">
