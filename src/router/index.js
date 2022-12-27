@@ -22,6 +22,12 @@ const router = createRouter({
       name: 'screenings',
       
       component: () => import('../views/ScreeningsView.vue')
+    },
+    {
+      path: '/test',
+      name: 'test',
+
+      component: () => import('../views/TestView.vue')
     }
   ]
 })

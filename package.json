@@ -7,8 +7,12 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@coreui/coreui": "^4.2.4",
+    "@coreui/vue": "^4.5.0",
     "@headlessui/vue": "^1.6.5",
     "@heroicons/vue": "^1.0.6",
+    "bootstrap": "^5.2.3",
+    "swiper": "^8.4.5",
     "vue": "^3.2.37",
     "vue-router": "^4.0.16"
   },
