@@ -103,8 +103,8 @@
               </transition>
             </Popover>
           </PopoverGroup>
-          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
+          <div v-if="signedin == null" class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+            <a @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
           </div>
         </div>
       </div>
@@ -181,6 +181,9 @@ import {
 SparklesIcon,
 } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
+import { signInWithGoogle, signedin } from "../firebase/index.js"
+
+console.log(signedin)
 
 const opportunities = [
   {
