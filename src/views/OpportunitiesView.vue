@@ -10,15 +10,22 @@ For actors
 <template>
     <div>
         <h1>Opportunities</h1>
+
+        <div v-for="opportunity in opportunities" :key="opportunity.id">
+            <h2>{{ opportunity.title }}</h2>
+            <p>{{ opportunity.shootStart }} - {{ opportunity.shootEnd }}</p>
+            <p>{{ opportunity.positions }}</p>
+            <p>{{ opportunity.contact }}</p>
+        </div>
     </div>
 </template>
 
 
 <script setup>
-
+ 
 import { collection, query, where } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { db } from "../firebase/index.js"
 
 const opportunities = ref([])
