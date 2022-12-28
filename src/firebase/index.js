@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { ref } from 'vue'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,20 +32,19 @@ const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider()
 
-const signedin = null
+const user = ref(null)
 
 const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result)
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
       if (user) {
-        console.log("user signed in")
-        signedin = result
+        user.value = result
+        console.log(user.value)
       }
       // this.$router.replace({ name: '/' })
       // ...
@@ -64,5 +64,5 @@ export {
     db,
     auth,
     signInWithGoogle,
-    signedin
+    user
 }

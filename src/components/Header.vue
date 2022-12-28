@@ -103,8 +103,9 @@
               </transition>
             </Popover>
           </PopoverGroup>
-          <div v-if="signedin == null" class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
+          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+            <a v-if="user == null" @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
+            <img v-else :src="user.photoURL" class="h-10 w-10 rounded-full" />
           </div>
         </div>
       </div>
@@ -181,9 +182,35 @@ import {
 SparklesIcon,
 } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
-import { signInWithGoogle, signedin } from "../firebase/index.js"
+import { onMounted, ref, onBeforeMount } from 'vue';
+import { signInWithGoogle } from "../firebase/index.js"
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/index.js"
 
-console.log(signedin)
+
+var user = ref(1)
+onAuthStateChanged(auth, (us) => {
+    if (us) {
+      console.log(us)
+      console.log('user is signed in')
+      user.value = us
+    } else {
+      console.log('user is signed out')
+      user.value = null
+    }
+  });
+// onBeforeMount(() => {
+//   onAuthStateChanged(auth, (us) => {
+//     if (us) {
+//       console.log(us)
+//       console.log('user is signed in')
+//       user.value = us
+//     } else {
+//       console.log('user is signed out')
+//       user.value = null
+//     }
+//   });
+// })
 
 const opportunities = [
   {
