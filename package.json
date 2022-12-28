@@ -12,6 +12,9 @@
     "@headlessui/vue": "^1.6.5",
     "@heroicons/vue": "^1.0.6",
     "bootstrap": "^5.2.3",
+    "cors": "^2.8.5",
+    "firebase": "^9.15.0",
+    "mongodb": "^4.13.0",
     "swiper": "^8.4.5",
     "vue": "^3.2.37",
     "vue-router": "^4.0.16"
