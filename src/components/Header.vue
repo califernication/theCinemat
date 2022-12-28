@@ -40,14 +40,15 @@
                           </div>
                         </a>
                       </div>
-                      <div class="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                      <!-- TODO: deprecated "calls to action" -->
+                      <!-- <div class="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                         <div v-for="item in callsToAction" :key="item.name" class="flow-root">
                           <a :href="item.href" class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">
                             <component :is="item.icon" class="flex-shrink-0 h-6 w-6 text-gray-400" aria-hidden="true" />
                             <span class="ml-3">{{ item.name }}</span>
                           </a>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </PopoverPanel>
                 </div>
@@ -59,7 +60,8 @@
             <!-- About -->
             <a href="/about" class="text-base font-medium text-gray-500 hover:text-gray-900"> About </a>
 
-            <Popover class="relative" v-slot="{ open }">
+            <!-- More -->
+            <!-- <Popover class="relative" v-slot="{ open }">
               <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light']">
                 <span>More</span>
                 <ChevronDownIcon :class="[open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500']" aria-hidden="true" />
@@ -101,7 +103,7 @@
                   </PopoverPanel>
                 </div>
               </transition>
-            </Popover>
+            </Popover> -->
           </PopoverGroup>
           <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <a v-if="user == null" @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
@@ -216,13 +218,13 @@ const opportunities = [
   {
     name: 'For Filmmakers',
     description: 'Get involved with a set and get some real-world experience.',
-    href: '#',
+    href: '/opportunities/filmmakers',
     icon: VideoCameraIcon,
   },
   {
     name: 'For Actors',
     description: 'Make your on-screen debut.',
-    href: '#',
+    href: '/opportunities/actors',
     icon: SparklesIcon,
   }
 ]

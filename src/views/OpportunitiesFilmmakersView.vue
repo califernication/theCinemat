@@ -11,7 +11,10 @@ For actors
     <!-- TODO: create PA sheet signup -->
     <!-- TODO: membership details -->
     <!-- TODO: center lol -->
-        <h1 class="text-primary text-5xl font-semibold underline text-center mt-14 tacking-wide">Opportunities for Filmmakers</h1>
+        <div class="flex justify-center">
+            <h1 class="text-primary text-5xl font-semibold underline text-center mt-14 tacking-wide">Opportunities for Filmmakers</h1>
+            <!-- TODO: add option to add films -->
+        </div>
         <div class="flex flex-col flex-wrap max-h-[800px] gap-10 mt-16 justify-center align-middle m-auto max-w-3xl">
             <div class="flex flex-none flex-col" v-for="[positionTitle, value] in reactiveMap" :key="index">
                 <h2 class=" text-primary-light text-3xl font-extrabold tracking-tighter sm:text-4xl mb-3">{{ positionTitle }}</h2>

@@ -34,9 +34,13 @@ const provider = new GoogleAuthProvider()
 
 const user = ref(null)
 
+// TODO: restrict to Yale email addresses
 const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
+      if (result.authDomain !== 'yale.edu') {
+        throw('Please sign in with a Yale email address.')
+      }
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;

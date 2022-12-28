@@ -18,10 +18,16 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/opportunities',
-      name: 'opportunities',
+      path: '/opportunities/filmmakers',
+      name: 'opportunitiesFilmmakers',
 
-      component: () => import('../views/OpportunitiesView.vue')
+      component: () => import('../views/OpportunitiesFilmmakersView.vue')
+    },
+    {
+      path: '/opportunities/actors',
+      name: 'opportunitiesActors',
+
+      component: () => import('../views/OpportunitiesActorsView.vue')
     },
     {
       path: '/screenings',
