@@ -10,7 +10,21 @@ For actors
 <template>
     <!-- TODO: create PA sheet signup -->
     <!-- TODO: membership details -->
-    <div>
+    <!-- TODO: center lol -->
+        <h1 class="text-primary text-5xl font-semibold underline text-center mt-14 tacking-wide">Opportunities for Filmmakers</h1>
+        <div class="flex flex-col flex-wrap max-h-[800px] gap-10 mt-16 justify-center align-middle m-auto max-w-3xl">
+            <div class="flex flex-none flex-col" v-for="[positionTitle, value] in reactiveMap" :key="index">
+                <h2 class=" text-primary-light text-3xl font-extrabold tracking-tighter sm:text-4xl mb-3">{{ positionTitle }}</h2>
+                <div class="flex-none mb-4" v-for="opportunity in value" :key="opportunity.id">
+                    <p class="font-medium italic text-lg"> "{{ opportunity.title }}"</p>
+                    <p class="text-gray-500">Shooting Period: {{ opportunity.shootStart.toDate().toDateString() }} to {{ opportunity.shootEnd.toDate().toDateString() }}</p>
+                    <p>Contact: <a class="text-primary-light font-medium underline decoration-2" :href="'mailto:' + opportunity.contact"> {{ opportunity.contact }}</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- old with rows instead of columms, but centered -->
+        <!-- <div>
         <h1 class="text-primary text-5xl font-semibold underline text-center mt-14 tacking-wide">Opportunities for Filmmakers</h1>
         <div class="flex flex-wrap justify-center pt-14 max-w-7xl mx-auto">
             <div class="flex-container m-10" v-for="[positionTitle, value] in reactiveMap" :key="index">
@@ -24,11 +38,10 @@ For actors
         </div>
 
         
-    </div>
+    </div> -->
 </template>
 
 <style>
-
 .flex-container {
   display: flex;
   flex-direction: column;
@@ -72,6 +85,7 @@ onMounted(async () => {
   });
   opportunities.value = fbOpp
   reactiveMap.value = positionsMap
+  console.log(reactiveMap.value)
 });
 
 </script>
