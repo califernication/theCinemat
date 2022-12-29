@@ -15,7 +15,7 @@
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="contact">Contact</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="contact" v-model="contact" placeholder="Contact" />
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="contact" v-model="contact" placeholder="Contact" required/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="description">Description</label>
@@ -35,11 +35,11 @@
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="poster">Poster</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="poster" ref="posterInput" @change="uploadPoster"/>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="poster" ref="posterInput" required/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
-                <label class="text-primary-light" for="media">Additional Media</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="media" ref="mediaInput" @change="uploadMedia" mutiple/>
+                <label class="text-primary-light" for="media">Additional Media (select up to 5)</label>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="media" ref="mediaInput" multiple/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="shootStart">Shoot Start</label>
@@ -126,6 +126,30 @@ export default {
   },
   methods: {
     async createFilm() {
+      // upload poster
+      console.log("uploading poster")
+      const file = this.$refs.posterInput.files[0];
+      const storageRef = ref(storage, `${this.title}/poster`)
+      await uploadBytes(storageRef, file).then(async (snapshot) => {
+        console.log('Uploaded poster!');
+        const url = await getDownloadURL(storageRef);
+        this.posterUrl = url;
+        console.log(this.posterUrl)
+      });
+
+      // upload media
+      const files = this.$refs.mediaInput.files;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const storageRef = ref(storage, `${this.title}/media/${file.name}`)
+        await uploadBytes(storageRef, file).then(async (snapshot) => {
+            console.log('Uploaded media!');
+            const url = await getDownloadURL(storageRef);
+            this.mediaUrls.push(url);
+        });
+      }
+
       const film = {
         title: this.title,
         tagline: this.tagline,
@@ -148,29 +172,8 @@ export default {
       await addDoc(collection(db, "productions"), film);
     },
     async uploadPoster() {
-      console.log("uploading poster")
-      const file = this.$refs.posterInput.files[0];
-      const storageRef = ref(storage, `posters/${file.name}`)
-      await uploadBytes(storageRef, file).then(async (snapshot) => {
-        console.log('Uploaded poster!');
-        const url = await getDownloadURL(storageRef);
-        this.posterUrl = url;
-        console.log(this.posterUrl)
-      });
     },
     async uploadMedia() {
-      const files = this.$refs.mediaInput.files;
-      const mediaRefs = [];
-
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const storageRef = ref(storage, `media/${file.name}`)
-        await uploadBytes(storageRef, file).then(async (snapshot) => {
-            console.log('Uploaded media!');
-            const url = await getDownloadURL(storageRef);
-            this.mediaUrls.push(url);
-        });
-      }
     },
   },
 };
