@@ -36,6 +36,12 @@ const router = createRouter({
       component: () => import('../views/ScreeningsView.vue')
     },
     {
+      path: '/create',
+      name: 'create',
+      
+      component: () => import('../views/CreateView.vue')
+    },
+    {
       path: '/test',
       name: 'test',
 
