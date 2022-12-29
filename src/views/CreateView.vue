@@ -1,5 +1,5 @@
 <!-- create view that allows user to define the details of their production -->
-<!-- Create a Vue view that asks a for title: String, tagline: String, contact: String, description: String, director: String, producer: String, contact: String, genre: String, posterUrl: String, mediaUrls: [String], shootStart: timestamp, shootEnd: timestamp, positions: [String] if vacancies: bool, screenDate: timestamp if screening: bool and creates a Firestore document. -->
+<!-- Create a Vue view that asks a for title: String, tagline: String, contact: String, description: String, director: String, producer: String, contact: String, genre: String, poster: Reference, mediaUrls: [Reference], shootStart: timestamp, shootEnd: timestamp, positions: [String] if vacancies: bool, screenDate: timestamp if screening: bool and creates a Firestore document. -->
 
 <template>
     <div class="flex flex-col items-center min-h-screen py-2 pt-14">
@@ -34,12 +34,12 @@
                 <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="genre" v-model="genre" placeholder="Genre" />
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
-                <label class="text-primary-light" for="posterUrl">Poster</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="posterUrl" ref="posterUrlInput" @change="uploadPoster"/>
+                <label class="text-primary-light" for="poster">Poster</label>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="poster" ref="posterInput" @change="uploadPoster"/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
-                <label class="text-primary-light" for="mediaUrls">Additional Media</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="mediaUrls" ref="mediaUrlsInput" @change="uploadMedia" mutiple/>
+                <label class="text-primary-light" for="media">Additional Media</label>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="media" ref="mediaInput" @change="uploadMedia" mutiple/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="shootStart">Shoot Start</label>
@@ -98,9 +98,9 @@
 </template>
 
 <script>
-import { db } from "../firebase/index.js";
+import { db, storage } from "../firebase/index.js";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
-import * as firebase from "firebase/app";
 
 // create the 
 export default {
@@ -149,27 +149,28 @@ export default {
     },
     async uploadPoster() {
       console.log("uploading poster")
-      const file = this.$refs.posterUrlInput.files[0];
-      const storageRef = firebase.storage().ref();
-      const posterRef = storageRef.child(`posters/${file.name}`);
-      await posterRef.put(file);
-      this.posterUrl = await posterRef.getDownloadURL();
+      const file = this.$refs.posterInput.files[0];
+      const storageRef = ref(storage, `posters/${file.name}`)
+      await uploadBytes(storageRef, file).then(async (snapshot) => {
+        console.log('Uploaded poster!');
+        const url = await getDownloadURL(storageRef);
+        this.posterUrl = url;
+        console.log(this.posterUrl)
+      });
     },
     async uploadMedia() {
-      const files = this.$refs.mediaUrlsInput.files;
-      const storageRef = firebase.storage().ref();
+      const files = this.$refs.mediaInput.files;
       const mediaRefs = [];
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const mediaRef = storageRef.child(`media/${file.name}`);
-        mediaRefs.push(mediaRef);
-        await mediaRef.put(file);
+        const storageRef = ref(storage, `media/${file.name}`)
+        await uploadBytes(storageRef, file).then(async (snapshot) => {
+            console.log('Uploaded media!');
+            const url = await getDownloadURL(storageRef);
+            this.mediaUrls.push(url);
+        });
       }
-
-      this.mediaUrls = await Promise.all(
-        mediaRefs.map(async (ref) => ref.getDownloadURL())
-      );
     },
   },
 };

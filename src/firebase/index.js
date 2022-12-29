@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 import { ref } from 'vue'
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,6 +30,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the database
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 const provider = new GoogleAuthProvider()
 
@@ -67,6 +69,7 @@ const signInWithGoogle = () => {
 export {
     db,
     auth,
+    storage,
     signInWithGoogle,
     user
 }
