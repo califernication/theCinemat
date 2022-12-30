@@ -106,8 +106,8 @@
             </Popover> -->
           </PopoverGroup>
           <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a v-if="user == null" @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
-            <img v-else :src="user.photoURL" class="h-10 w-10 rounded-full" />
+            <a v-if="store.getters.user.loggedIn === false" @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
+            <img v-else :src="store.getters.user.data.photoURL" class="h-10 w-10 rounded-full" />
           </div>
         </div>
       </div>
@@ -184,23 +184,24 @@ import {
 SparklesIcon,
 } from '@heroicons/vue/outline'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
-import { onMounted, ref, onBeforeMount } from 'vue';
+// import { onMounted, ref, onBeforeMount } from 'vue';
 import { signInWithGoogle } from "../firebase/index.js"
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/index.js"
+// import { onAuthStateChanged } from "firebase/auth";
+// import { auth } from "../firebase/index.js"
+import store from "../store"
 
 
-var user = ref(1)
-onAuthStateChanged(auth, (us) => {
-    if (us) {
-      console.log(us)
-      console.log('user is signed in')
-      user.value = us
-    } else {
-      console.log('user is signed out')
-      user.value = null
-    }
-  });
+// var user = ref(null)
+// onAuthStateChanged(auth, (us) => {
+//     if (us) {
+//       console.log(us)
+//       console.log('user is signed in')
+//       user.value = us
+//     } else {
+//       console.log('user is signed out')
+//       user.value = null
+//     }
+//   });
 // onBeforeMount(() => {
 //   onAuthStateChanged(auth, (us) => {
 //     if (us) {

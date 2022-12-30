@@ -6,6 +6,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { ref } from 'vue'
+import store from "../store"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,15 +35,13 @@ const storage = getStorage(app);
 
 const provider = new GoogleAuthProvider()
 
-const user = ref(null)
-
 // TODO: restrict to Yale email addresses
 const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      if (result.authDomain !== 'yale.edu') {
-        throw('Please sign in with a Yale email address.')
-      }
+      // if (result.authDomain !== 'yale.edu') {
+      //   throw('Please sign in with a Yale email address.')
+      // }
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
@@ -50,11 +49,19 @@ const signInWithGoogle = () => {
       const user = result.user;
       if (user) {
         user.value = result
-        console.log(user.value)
+        // store in Vuex store
+        store.commit('SET_LOGGED_IN', true)
+        store.commit('SET_USER', {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL
+        })
+        console.log(store.getters.user)
       }
       // this.$router.replace({ name: '/' })
       // ...
     }).catch((error) => {
+      alert(error)
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -70,6 +77,5 @@ export {
     db,
     auth,
     storage,
-    signInWithGoogle,
-    user
+    signInWithGoogle
 }

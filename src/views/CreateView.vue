@@ -1,6 +1,7 @@
 <!-- create view that allows user to define the details of their production -->
 <!-- Create a Vue view that asks a for title: String, tagline: String, contact: String, description: String, director: String, producer: String, contact: String, genre: String, poster: Reference, mediaUrls: [Reference], shootStart: timestamp, shootEnd: timestamp, positions: [String] if vacancies: bool, screenDate: timestamp if screening: bool and creates a Firestore document. -->
 
+<!-- TODO: UI looks like shit -->
 <template>
     <div class="flex flex-col items-center min-h-screen py-2 pt-14">
         <h1 class="text-3xl font-bold text-primary-light">Create a Production</h1>
@@ -55,30 +56,50 @@
                 <input class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="checkbox" id="vacancies" v-model="vacancies" placeholder="Vacancies" />
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
-                <label class="text-primary-light" for="position">Positions Available</label>
-                <select class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" id="position" name="position">
-                    <option value="actor">Actor</option>
-                    <option value="actress">Actress</option>
-                    <option value="director">Director</option>
-                    <option value="producer">Producer</option>
-                    <option value="cinematographer">Cinematographer</option>
-                    <option value="editor">Editor</option>
-                    <option value="sound">Sound</option>
-                    <option value="makeup">Makeup</option>
-                    <option value="costume">Costume</option>
-                    <option value="set">Set</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <!-- <label for="positions">Positions:</label>
-                <div v-for="(position, index) in positions" :key="index">
-                    <input v-model="position" type="text" />
-                    <button @click="removePosition(index)">Remove</button>
+                <label class="text-primary-light">Positions Available</label>
+                <div class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50">
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Director of Photography" id="Director of Photography" />
+                        <label>Director of Photography</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Assistant Camera 1" id="Assistant Camera 1" />
+                        <label>Assistant Camera 1</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Assistant Camera 2" id="Assistant Camera 2" />
+                        <label for="Assistant Camera 2">Assistant Camera 2</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Gaffer" id="Gaffer" />
+                        <label for="Gaffer">Gaffer</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Sound Designer" id="Sound Designer" />
+                        <label for="Sound Designer">Sound Designer</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Sound Editor" id="Sound Editor" />
+                        <label for="Sound Editor">Sound Editor</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Editor (General)" id="Editor (General)" />
+                        <label for="Editor (General)">Editor (General)</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Colorist" id="Colorist" />
+                        <label for="Colorist">Colorist</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Assistant Director" id="Assistant Director" />
+                        <label for="Assistant Director">Assistant Director</label>
+                    </div>
+                    <div class="flex items-center py-2 gap-2">
+                        <input type="checkbox" ref="checkbox" name="position" value="Assistant Producer" id="Assistant Producer" />
+                        <label for="Assistant Producer">Assistant Producer</label>
+                    </div>
                 </div>
-                <div>
-                    <input v-model="newPosition" type="text" />
-                    <button @click="addPosition">Add</button>
-                </div> -->
+            </div>
             <!-- check if the film is screening with a checkbox. if it is, ask for the a date -->
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="screening">Is the film screening?</label>
@@ -88,7 +109,6 @@
                 <label class="text-primary-light" for="screeningDate">Screening Date</label>
                 <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="date" id="screeningDate" v-model="screenDate" placeholder="Screening Date" />
             </div>
-            <!-- add a button to submit -->
 
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <button class="w-full px-4 py-2 text-white bg-primary-light rounded-md shadow-sm hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-light focus:ring-opacity-50">Submit</button>
@@ -121,11 +141,11 @@ export default {
       vacancies: false,
       screening: false,
       screenDate: '',
-      positions: '',
     };
   },
   methods: {
     async createFilm() {
+        // TODO: maybe safeguard that only imgs can be uploaded
       // upload poster
       console.log("uploading poster")
       const file = this.$refs.posterInput.files[0];
@@ -150,6 +170,14 @@ export default {
         });
       }
 
+      // Get positions
+        // Get an array of all the checkbox elements
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        // Loop over them and push the value to the positions array
+        checkboxes.forEach((checkbox) => {
+            this.positions.push(checkbox.value);
+        });
+
       const film = {
         title: this.title,
         tagline: this.tagline,
@@ -157,12 +185,12 @@ export default {
         description: this.description,
         director: this.director,
         producer: this.producer,
+        positions: this.positions,
         genre: this.genre,
         posterUrl: this.posterUrl,
         mediaUrls: this.mediaUrls,
         shootStart: this.shootStart,
         shootEnd: this.shootEnd,
-        positions: this.positions,
         vacancies: this.vacancies,
         screening: this.screening,
         screenDate: this.screenDate,
@@ -170,11 +198,7 @@ export default {
 
       console.log("sending film to firebase!")
       await addDoc(collection(db, "productions"), film);
-    },
-    async uploadPoster() {
-    },
-    async uploadMedia() {
-    },
+    }
   },
 };
 
