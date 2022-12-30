@@ -9,3 +9,9 @@ background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3
 .swiper-wrapper{
   transition-duration: 750ms !important;
 }
+
+.swiper-slide{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

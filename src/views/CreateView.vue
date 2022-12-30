@@ -103,7 +103,7 @@
             <!-- check if the film is screening with a checkbox. if it is, ask for the a date -->
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="screening">Is the film screening?</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="checkbox" id="screening" v-model="screening" placeholder="Screening" />
+                <input class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="checkbox" id="screening" v-model="screening" placeholder="Screening" />
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="screeningDate">Screening Date</label>
@@ -173,7 +173,9 @@ export default {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
         // Loop over them and push the value to the positions array
         checkboxes.forEach((checkbox) => {
-            this.positions.push(checkbox.value);
+            if (checkbox.value != "on") {
+                this.positions.push(checkbox.value);
+            }
         });
 
       const film = {
