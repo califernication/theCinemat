@@ -107,7 +107,7 @@
           </PopoverGroup>
           <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <a v-if="store.getters.user.loggedIn === false" @click="signInWithGoogle" href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </a>
-            <img v-else :src="store.getters.user.data.photoURL" class="h-10 w-10 rounded-full" />
+            <img v-else :src="store.getters.userPhotoURL" class="h-10 w-10 rounded-full" />
           </div>
         </div>
       </div>

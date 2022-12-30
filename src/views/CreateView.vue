@@ -8,7 +8,7 @@
         <form class="flex flex-col flex-wrap max-h-screen px-4 py-4" @submit.prevent="createFilm">
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="title">Title</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="title" v-model="title" placeholder="Title" required/>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="title" v-model="title" placeholder="Title"/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="tagline">Tagline</label>
@@ -16,7 +16,7 @@
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="contact">Contact</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="contact" v-model="contact" placeholder="Contact" required/>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="contact" v-model="contact" placeholder="Contact"/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="description">Description</label>
@@ -36,7 +36,7 @@
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="poster">Poster</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="poster" ref="posterInput" required/>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="file" id="poster" ref="posterInput"/>
             </div>
             <div class="flex flex-col items-center justify-center w-full px-4 py-4">
                 <label class="text-primary-light" for="media">Additional Media (select up to 5)</label>
@@ -121,6 +121,7 @@
 import { db, storage } from "../firebase/index.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
+import store from "../store"
 
 // create the 
 export default {
@@ -141,10 +142,12 @@ export default {
       vacancies: false,
       screening: false,
       screenDate: '',
+      user: store.getters.userEmail
     };
   },
   methods: {
     async createFilm() {
+        console.log(store.getters.userEmail)
         // TODO: maybe safeguard that only imgs can be uploaded
       // upload poster
       console.log("uploading poster")
@@ -194,6 +197,7 @@ export default {
         vacancies: this.vacancies,
         screening: this.screening,
         screenDate: this.screenDate,
+        user: store.getters.userEmail,
       };
 
       console.log("sending film to firebase!")

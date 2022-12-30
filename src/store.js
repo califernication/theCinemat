@@ -14,6 +14,15 @@ const store = createStore({
     getters: {
         user(state){
           return state.user
+        },
+        username(state){
+          return state.user.data.displayName
+        },
+        userEmail(state) {
+          return state.user.data.email
+        },
+        userPhotoURL(state) {
+          return state.user.data.photoURL
         }
       },
     mutations: {
