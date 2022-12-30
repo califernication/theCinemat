@@ -20,7 +20,7 @@ For actors
                 <h2 class=" text-primary-light text-3xl font-extrabold tracking-tighter sm:text-4xl mb-3">{{ positionTitle }}</h2>
                 <div class="flex-none mb-4" v-for="opportunity in value" :key="opportunity.id">
                     <p class="font-medium italic text-lg"> "{{ opportunity.title }}"</p>
-                    <p class="text-gray-500">Shooting Period: {{ opportunity.shootStart.toDate().toDateString() }} to {{ opportunity.shootEnd.toDate().toDateString() }}</p>
+                    <p class="text-gray-500">Shooting Period: {{ typeof(opportunity.shootStart) === "string" ? opportunity.shootStart : opportunity.shootStart.toDate().toDateString() }} to {{ typeof(opportunity.shootEnd) === "string" ? opportunity.shootEnd : opportunity.shootEnd.toDate().toDateString() }}</p>
                     <p>Contact: <a class="text-primary-light font-medium underline decoration-2" :href="'mailto:' + opportunity.contact"> {{ opportunity.contact }}</a></p>
                 </div>
             </div>
@@ -64,7 +64,8 @@ const opportunities = ref([])
 const reactiveMap = ref(new Map())
 
 onMounted(async () => {
-  const opportunitiesSnapshot = await getDocs(collection(db, "opportunities"))
+  const opportunitiesSnapshot = await getDocs(collection(db, "productions"))
+  console.log(opportunitiesSnapshot)
   let fbOpp = []
   let positionsMap = new Map()
   opportunitiesSnapshot.forEach((doc) => {

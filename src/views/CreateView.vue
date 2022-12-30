@@ -147,17 +147,13 @@ export default {
   },
   methods: {
     async createFilm() {
-        console.log(store.getters.userEmail)
         // TODO: maybe safeguard that only imgs can be uploaded
       // upload poster
-      console.log("uploading poster")
       const file = this.$refs.posterInput.files[0];
       const storageRef = ref(storage, `${this.title}/poster`)
       await uploadBytes(storageRef, file).then(async (snapshot) => {
-        console.log('Uploaded poster!');
         const url = await getDownloadURL(storageRef);
         this.posterUrl = url;
-        console.log(this.posterUrl)
       });
 
       // upload media
@@ -167,7 +163,6 @@ export default {
         const file = files[i];
         const storageRef = ref(storage, `${this.title}/media/${file.name}`)
         await uploadBytes(storageRef, file).then(async (snapshot) => {
-            console.log('Uploaded media!');
             const url = await getDownloadURL(storageRef);
             this.mediaUrls.push(url);
         });
@@ -192,11 +187,11 @@ export default {
         genre: this.genre,
         posterUrl: this.posterUrl,
         mediaUrls: this.mediaUrls,
-        shootStart: this.shootStart,
-        shootEnd: this.shootEnd,
+        shootStart: this.shootStart === "" ? "TBD" : new Date(Date.parse(this.shootStart)),
+        shootEnd: this.shootEnd === "" ? "TBD" : new Date(Date.parse(this.shootEnd)),
         vacancies: this.vacancies,
         screening: this.screening,
-        screenDate: this.screenDate,
+        screenDate: this.screenDate === "" ? "TBD" : new Date(Date.parse(this.screenDate)),
         user: store.getters.userEmail,
       };
 
