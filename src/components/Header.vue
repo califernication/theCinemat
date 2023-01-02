@@ -56,7 +56,7 @@
             </Popover>
 
             <a href="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </a>
-            <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900"> Workshops </a>
+            <a href="/workshops" class="text-base font-medium text-gray-500 hover:text-gray-900"> Workshops </a>
             <!-- About -->
             <a href="/about" class="text-base font-medium text-gray-500 hover:text-gray-900"> About </a>
 
