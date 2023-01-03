@@ -1,33 +1,65 @@
-<script>
-import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import { Calendar } from '@fullcalendar/core';
-import googleCalendarPlugin from '@fullcalendar/google-calendar';
-
-export default {
-  components: {
-    FullCalendar // make the <FullCalendar> tag available
-  },
-  data: function() {
-    return {
-      calendarOptions: {
-        plugins: [dayGridPlugin, googleCalendarPlugin],
-        initialView: 'dayGridMonth',
-        weekends: false,
-        events: [
-          { title: 'Meeting', start: new Date() }
-        ],
-        googleCalendarApiKey: 'AIzaSyD_oqepo7ebC5k4u2xaVa5nZ3uy3UsJexU',
-        events: {
-          googleCalendarId: '8bc87f1ac86a518a0e9962d29982a0222795dc96a34188293511e6e6a39f716e@group.calendar.google.com'
-        }
-      }
-    }
-  }
-}
-</script>
-
 <template>
-  <h1>Demo App</h1>
-  <FullCalendar :options='calendarOptions' />
+  <div><h4 class="form-label">Creating the form</h4></div>
+  <h1>New Character</h1>
+
+  <FormKit type="form" class="text-center">
+    <FormKit
+      type="text"
+      name="name"
+      id="name"
+      validation="required|not:Admin"
+      label="Name"
+      help="Enter your character's full name"
+      placeholder="“Scarlet Sword”"
+    />
+
+    <FormKit
+      type="select"
+      label="Class"
+      name="class"
+      id="class"
+      placeholder="Select a class"
+      :options="['Warrior', 'Mage', 'Assassin']"
+    />
+
+    <FormKit
+      type="range"
+      name="strength"
+      id="strength"
+      label="Strength"
+      value="5"
+      validation="min:2|max:9"
+      validation-visibility="live"
+      min="1"
+      max="10"
+      step="1"
+      help="How many strength points should this character have?"
+    />
+
+    <FormKit
+      type="range"
+      name="skill"
+      id="skill"
+      validation="required|max:10"
+      label="Skill"
+      value="5"
+      min="1"
+      max="10"
+      step="1"
+      help="How much skill points to start with"
+    />
+
+    <FormKit
+      type="range"
+      name="dexterity"
+      id="dexterity"
+      validation="required|max:10"
+      label="Dexterity"
+      value="5"
+      min="1"
+      max="10"
+      step="1"
+      help="How much dexterity points to start with"
+    />
+  </FormKit>
 </template>
