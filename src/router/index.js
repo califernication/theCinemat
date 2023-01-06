@@ -41,6 +41,12 @@ const router = createRouter({
       
       component: () => import('../views/WorkshopsView.vue')
     },
+    {
+      path: '/resources',
+      name: 'resources',
+      
+      component: () => import('../views/StudentResourcesView.vue')
+    },
     // TODO: lock this route to logged in users
     {
       path: '/create',

@@ -57,6 +57,7 @@
 
             <router-link to="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </router-link>
             <router-link to="/workshops" class="text-base font-medium text-gray-500 hover:text-gray-900"> Workshops </router-link>
+            <router-link to="/resources" class="text-base font-medium text-gray-500 hover:text-gray-900"> Resources </router-link>
             <!-- About -->
             <router-link to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900"> About </router-link>
 
