@@ -3,20 +3,20 @@
   <div class="app-main z-30">
     <Popover class="relative bg-white z-30">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+        <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 lg:justify-start lg:space-x-10">
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <router-link to="/">
               <span class="sr-only">Workflow</span>
               <img class="h-8 w-auto sm:h-10" src="../assets/inverted-icon.svg" alt="" />
             </router-link>
           </div>
-          <div class="-mr-2 -my-2 md:hidden">
+          <div class="-mr-2 -my-2 lg:hidden">
             <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-light">
               <span class="sr-only">Open menu</span>
               <MenuIcon class="h-6 w-6" aria-hidden="true" />
             </PopoverButton>
           </div>
-          <PopoverGroup as="nav" class="hidden md:flex items-center space-x-10">
+          <PopoverGroup as="nav" class="hidden lg:flex items-center space-x-10">
             <router-link to="/projects" class="text-base font-semibold text-primary hover:text-gray-900"> All Projects </router-link>
             <Popover class="relative" v-slot="{ open }">
               <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light']">
@@ -108,8 +108,8 @@
               </transition>
             </Popover> -->
           </PopoverGroup>
-          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <router-link v-if="store.getters.user.loggedIn === false" @click="signInWithGoogle" to="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </router-link>
+          <div class="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0">
+            <router-link v-if="store.getters.user.loggedIn === false" @click="signInWithGoogle" to="#" class="ml-8 whitespace-nowrap hidden lg:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-light hover:bg-primary"> Log-in with netID </router-link>
             <Popover v-else class="relative" v-slot="{ open }">
               <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light']">
                 <img :src="store.getters.userPhotoURL" referrerpolicy="no-referrer" class="h-10 w-10 rounded-full" />
@@ -141,7 +141,7 @@
 
       <transition enter-active-class="duration-200 ease-out" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-active-class="duration-100 ease-in" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
         <div>
-          <PopoverPanel focus class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+          <PopoverPanel focus class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right lg:hidden">
             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
               <div class="pt-5 pb-6 px-5">
                 <div class="flex items-center justify-between">

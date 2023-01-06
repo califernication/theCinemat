@@ -1,11 +1,11 @@
 <template>
-    <div class="flex flex-col w-full px-80 mt-14 gap-4">
+    <div class="flex flex-col w-full px-20 sm:px-28 md:px-44 lg:px-72 mt-14 gap-4">
         <h1 class="text-primary text-5xl font-semibold underline tacking-wide">Student Resources</h1>
         <p class="text-md text-gray-500">The Cinemat position packets provide information about the responsibilities and guidelines for various Cinemat production roles. If you click the chevron symbol next to a packet, you can learn more about the role. You can also click on the packet to open it in a new tab. If you have any issues accessing the packets or if you want information about a role that is not listed, please contact thecinemat@yale.edu.</p>
     </div>
 
     <!-- TODO: add Chevron -->
-    <div class="w-full px-80 mt-8 mb-6">
+    <div class="w-full px-20 sm:px-28 md:px-44 lg:px-72 mt-8 mb-6">
         <div class="mx-auto w-full rounded-2xl bg-white flex flex-col gap-4">
             <div v-auto-animate v-for="position in positions" :key="position.title">
                 <Disclosure>
