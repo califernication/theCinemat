@@ -21,21 +21,14 @@
         </svg>
       </div>
     </div>
-    <svg class="absolute z-10 inset-y-0 left-[500px] hidden h-full w-64 translate-x-1/2 transform text-gray-50 lg:block" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <polygon points="50,0 100,0 50,100 0,100" />
-    </svg>
-    <!-- fill in corner -->
-    <svg class="absolute z-10 inset-y-0 left-[450px] hidden h-full w-64 translate-x-1/2 transform text-gray-50 lg:block" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <polygon points="50,0 100,0 50,100 0,100" />
-    </svg>
 
-    <div class="relative pt-6 pb-16 sm:pb-24">
+    <div class="relative">
 
       <!-- create a flex container so that the title and carousel can be side by side -->
-      <div class="flex">
-        <main class="mt-16 px-4 sm:mt-24 max-w-lg ml-36">
+      <div class="flex flex-wrap justify-center lg:justify-start lg:flex-nowrap min-h-[1000px] lg:min-h-[500px] ">
+        <main class="absolute z-20 mt-16 px-4 sm:mt-24 max-w-xl lg:ml-16 xl:ml-36 pt-6 pb-16 sm:pb-24">
           <div class="text-center">
-            <h1 class="w-[500px]">
+            <h1 class="">
               <img class="block xl:inline" src="../assets/inverted-logo.svg" alt=""/>
             </h1>
             <p class="pt-6 mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">A Yale University, student-led production company with the mission to provide a hands-on education in the craft of filmmaking. </p>
@@ -49,15 +42,36 @@
             </div>
           </div>
         </main>
+        <div class="w-1/2 dummylol"></div>
+        <div class="flex lg:w-1/2">
+          <div>
+            <svg class="hidden lg:block absolute z-10 h-full w-40 text-gray-50" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <polygon points="0,0 100,0 50,100 0,100" />
+            </svg>
+            <svg class="hidden lg:block absolute z-10 h-full w-40 text-gray-50" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <polygon points="50,0 100,0 50,100 0,100" />
+            </svg>
+            <!-- fill in corner -->
+            <!-- <svg class="hidden lg:block absolute z-10 h-full w-64 text-gray-50" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <polygon points="50,0 100,0 50,100 0,100" />
+            </svg> -->
+          </div>
+          <Carousel class="w-screen" />
+        </div>
 
 
       </div>
     </div>
-    <div class="-z-0 object-cover lg:absolute lg:inset-y-0 lg:right-5 lg:w-1/2">
+    <!-- <div class=" lg:absolute lg:inset-y-0 lg:right-5 lg:w-1/2">
+      <svg class="hidden lg:block absolute z-10 -left-60 inset-y-0 h-full w-64 translate-x-1/2 transform text-gray-50" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="50,0 100,0 50,100 0,100" />
+      </svg>
+      <svg class="absolute z-10 inset-y-0 -left-64 hidden h-full w-64 translate-x-1/2 transform text-gray-50 lg:block" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="50,0 100,0 50,100 0,100" />
+      </svg>
+
       <Carousel />
-      <!-- <img class="z-40 h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="../images/sample1.jpeg" alt="Yale Film" /> -->
-      
-    </div>
+    </div> -->
   </div>
 <!-- 
   <div class="relative overflow-hidden bg-white">

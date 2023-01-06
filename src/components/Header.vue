@@ -1,7 +1,7 @@
 <template>
   <div class="idk"></div>
   <div class="app-main z-30">
-    <Popover class="relative bg-white z-20">
+    <Popover class="relative bg-white z-30">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div class="flex justify-start lg:w-0 lg:flex-1">
@@ -16,7 +16,8 @@
               <MenuIcon class="h-6 w-6" aria-hidden="true" />
             </PopoverButton>
           </div>
-          <PopoverGroup as="nav" class="hidden md:flex space-x-10">
+          <PopoverGroup as="nav" class="hidden md:flex items-center space-x-10">
+            <router-link to="/projects" class="text-base font-semibold text-primary hover:text-gray-900"> All Projects </router-link>
             <Popover class="relative" v-slot="{ open }">
               <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light']">
                 <span>Opportunities</span>
@@ -55,7 +56,8 @@
               </transition>
             </Popover>
 
-            <router-link to="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </router-link>
+            <!-- TODO: reactivate screenings -->
+            <!-- <router-link to="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </router-link> -->
             <router-link to="/workshops" class="text-base font-medium text-gray-500 hover:text-gray-900"> Workshops </router-link>
             <router-link to="/resources" class="text-base font-medium text-gray-500 hover:text-gray-900"> Resources </router-link>
             <!-- About -->
@@ -166,20 +168,12 @@
               </div>
               <div class="py-6 px-5 space-y-6">
                 <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-                  <router-link to="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Pricing </router-link>
-
-                  <router-link to="#" class="text-base font-medium text-gray-900 hover:text-gray-700"> Docs </router-link>
                   <router-link v-for="item in resources" :key="item.name" :to="item.href" class="text-base font-medium text-gray-900 hover:text-gray-700">
                     {{ item.name }}
                   </router-link>
                 </div>
                 <div>
-                  <router-link to="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary"> Sign up </router-link>
-                  <p class="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?
-                    {{ ' ' }}
-                    <router-link to="#" class="text-primary-light hover:text-primary-light"> Sign in </router-link>
-                  </p>
+                  <router-link to="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary"> Log-in with netID </router-link>
                 </div>
               </div>
             </div>
@@ -240,8 +234,9 @@ import store from "../store"
 //   });
 // })
 const userOptions = [
-  { name: 'Add a production', href: '/create' },
-  { name: 'View/edit your productions', href: '#' },
+  { name: 'Add an upcoming production', href: '/create' },
+  { name: 'Edit your upcoming productions', href: '#' },
+  { name: 'Add a past production', href: '#'},
   { name: 'Sign out', href: '#' },
 ]
 
@@ -265,24 +260,25 @@ const callsToAction = [
 ]
 const resources = [
   {
-    name: 'Help Center',
+    name: 'All Projects',
     description: 'Get all of your questions answered in our forums or contact support.',
-    href: '#',
+    href: '/projects',
     icon: SupportIcon,
   },
   {
-    name: 'Guides',
+    name: 'Opportunities',
     description: 'Learn how to maximize our platform to get the most out of it.',
-    href: '#',
+    href: '/opportunities/filmmakers',
     icon: BookmarkAltIcon,
   },
   {
-    name: 'Events',
+    name: 'Workshops',
     description: 'See what meet-ups and other events we might be planning near you.',
-    href: '#',
+    href: '/workshops',
     icon: CalendarIcon,
   },
-  { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
+  { name: 'Resources', description: 'Understand how we take your privacy seriously.', href: '/resources', icon: ShieldCheckIcon },
+  { name: 'About', description: 'Understand how we take your privacy seriously.', href: '/about', icon: ShieldCheckIcon },
 ]
 const recentPosts = [
   { id: 1, name: 'Boost your conversion rate', href: '#' },
