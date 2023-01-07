@@ -44,6 +44,18 @@
 
         <!-- TODO: add photo reel -->
 
+        <!-- TODO: Membership -->
+
+        <div class="mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-18">
+          <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
+            <div class="space-y-5 sm:space-y-4">
+              <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Membership</h2>
+              <!-- <p class="text-xl text-gray-500">The 2022-2023 board is incredibly excited to support The Cinemat through the academic year. Please reach out if you have any questions!</p> -->
+            </div>
+            How to become a member
+          </div>
+        </div>
+
         <!-- Affiliations -->
         <div class="pb-12 px-6 lg:px-8 lg:pb-18 max-w-7xl self-center">
           <p class="text-2xl text-primary text-center">Our continous support to the Yale community is in great thanks to our affiliation with
@@ -58,7 +70,6 @@
 
         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
         <!-- People  -->
-        <!-- TODO: stack the rows of people -->
         <div class="mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-18">
           <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
             <div class="space-y-5 sm:space-y-4">

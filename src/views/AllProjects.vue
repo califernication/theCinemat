@@ -7,6 +7,55 @@
         <h1 class="text-primary text-5xl font-semibold underline tacking-wide">Cinemat-Sponsored Projects</h1>
         <p class="text-md text-gray-500">The Cinemat position packets provide information about the responsibilities and guidelines for various Cinemat production roles. If you click the chevron symbol next to a packet, you can learn more about the role. You can also click on the packet to open it in a new tab. If you have any issues accessing the packets or if you want information about a role that is not listed, please contact thecinemat@yale.edu.</p>
     </div>
+    <!-- <div class="flex justify-center">
+      <div class="w-full max-w-md px-2 py-16 sm:px-0">
+        <TabGroup>
+          <TabList class="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+            <Tab
+              v-for="category in Object.keys(categories)"
+              as="template"
+              :key="category"
+              v-slot="{ selected }"
+            >
+              <button
+                :class="[
+                  'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
+                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                  selected
+                    ? 'bg-white shadow'
+                    : 'text-blue-100 hover:bg-white/[0.12] hover:text-white',
+                ]"
+              >
+                {{ category }}
+              </button>
+            </Tab>
+          </TabList>
+
+          <TabPanels class="mt-2">
+            <TabPanel
+              v-for="(posts, idx) in Object.values(categories)"
+              :key="idx"
+              :class="[
+                'rounded-xl bg-white p-3',
+                'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+              ]"
+            >
+              <ul>
+                <li
+                  v-for="post in posts"
+                  :key="post.id"
+                  class="relative rounded-md p-3 hover:bg-gray-100"
+                >
+                  <h3 class="text-sm font-medium leading-5">
+                    {{ post.id + ". " + post.title }}
+                  </h3>
+                </li>
+              </ul>
+            </TabPanel>
+          </TabPanels>
+        </TabGroup>
+      </div>
+    </div> -->
     <div class="mx-auto max-w-7xl py-2 px-6 lg:px-20 lg:py-4">
       <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
         <div class="lg:col-span-3">
@@ -79,6 +128,45 @@
 <script setup>
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import { ref } from 'vue'
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
+
+const categories = ref({
+  Benefits: [
+    {
+      id: 1,
+      title: 'Funding from The Cinemat.',
+    },
+    {
+      id: 2,
+      title: "Access to Cinemat-owned equipment",
+    },
+    {
+      id: 3,
+      title: "Promotion on The Cinemat Newsletter."
+    }
+  ],
+  "How to Partner with The Cinemat": [
+    {
+      id: 1,
+      title: 'Is tech making coffee better or worse?',
+    },
+    {
+      id: 2,
+      title: 'The most innovative things happening in coffee',
+    }
+  ],
+  "First-Year Sets": [
+    {
+      id: 1,
+      title: 'Ask Me Anything: 10 answers to your questions about coffee',
+    },
+    {
+      id: 2,
+      title: "The worst advice we've ever heard about coffee",
+    },
+  ],
+})
 
 const films = [
     {

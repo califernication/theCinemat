@@ -14,7 +14,7 @@
     "@fullcalendar/core": "^6.0.2",
     "@fullcalendar/google-calendar": "^6.0.2",
     "@fullcalendar/vue3": "^6.0.2",
-    "@headlessui/vue": "^1.6.5",
+    "@headlessui/vue": "^1.7.7",
     "@heroicons/vue": "^1.0.6",
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
