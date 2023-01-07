@@ -1,9 +1,12 @@
+import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import store from "../store"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: '/:pathMatch(.*)*', component: () => import('../views/PathNotFoundView.vue') },
     {
       path: '/',
       name: 'home',
@@ -58,7 +61,17 @@ const router = createRouter({
       path: '/create',
       name: 'create',
       
-      component: () => import('../views/CreateView.vue')
+      component: () => import('../views/CreateView.vue'),
+      beforeEnter: ((to) => {
+        if (store.getters.user.loggedIn === false) {
+          alert("Log-in with your netId!")
+          return {
+            name: 'home',
+          } 
+        }
+
+        return true
+      }),
     },
     {
       path: '/test',

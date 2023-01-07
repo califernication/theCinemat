@@ -79,7 +79,7 @@ const navigation = {
   ],
   about: [
     { name: 'The Team', href: '#' },
-    { name: 'Join Us', href: '#' },
+    { name: 'Membership', href: '#' },
   ],
   social: [
     {

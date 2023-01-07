@@ -77,8 +77,8 @@
         </div>
         <div class="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:max-w-none lg:px-0 lg:py-20">
           <!-- Testimonial card-->
-          <div class="relative overflow-hidden rounded-2xl shadow-xl">
-            <CarouselBTS />
+          <div class=" z-10 relative overflow-hidden rounded-2xl shadow-xl">
+            <CarouselBTS class="z-0"/>
           </div>
         </div>
       </div>
