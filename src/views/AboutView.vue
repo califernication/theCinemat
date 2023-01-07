@@ -42,6 +42,8 @@
           </div>
         </div>
 
+        <!-- TODO: add photo reel -->
+
         <!-- Affiliations -->
         <div class="pb-12 px-6 lg:px-8 lg:pb-18 max-w-7xl self-center">
           <p class="text-2xl text-primary text-center">Our continous support to the Yale community is in great thanks to our affiliation with
@@ -65,7 +67,7 @@
             </div>
             <div class="lg:col-span-2">
               <ul role="list" class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0 lg:gap-x-8">
-                <li v-for="person in people" :key="person.name">
+                <li v-for="person in leadership" :key="person.name">
                   <div class="flex items-center space-x-4 lg:space-x-6">
                     <img class="h-16 w-16 rounded-full lg:h-20 lg:w-20" :src="person.imageUrl" alt="" />
                     <div class="space-y-1 text-lg font-medium leading-6">
@@ -110,7 +112,7 @@
 </template>
 
 <script setup>
-const people = [
+const leadership = [
   {
     name: 'Soojin Park',
     role: 'President',
