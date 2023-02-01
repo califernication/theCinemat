@@ -58,7 +58,7 @@
 
             <!-- TODO: reactivate screenings -->
             <!-- <router-link to="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </router-link> -->
-            <router-link to="/workshops" class="text-base font-medium text-gray-500 hover:text-gray-900"> Workshops </router-link>
+            <router-link to="/events" class="text-base font-medium text-gray-500 hover:text-gray-900"> Events </router-link>
             <router-link to="/resources" class="text-base font-medium text-gray-500 hover:text-gray-900"> Resources </router-link>
             <!-- About -->
             <router-link to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900"> About </router-link>
@@ -234,9 +234,8 @@ import store from "../store"
 //   });
 // })
 const userOptions = [
-  { name: 'Add an upcoming production', href: '/create' },
-  { name: 'Edit your upcoming productions', href: '#' },
-  { name: 'Add a past production', href: '#'},
+  { name: 'Add a production', href: '/create' },
+  { name: 'Edit your productions', href: '/edit' },
   { name: 'Sign out', href: '#' },
 ]
 
@@ -272,9 +271,9 @@ const resources = [
     icon: BookmarkAltIcon,
   },
   {
-    name: 'Workshops',
+    name: 'Events',
     description: 'See what meet-ups and other events we might be planning near you.',
-    href: '/workshops',
+    href: '/events',
     icon: CalendarIcon,
   },
   { name: 'Resources', description: 'Understand how we take your privacy seriously.', href: '/resources', icon: ShieldCheckIcon },

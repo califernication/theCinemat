@@ -1,6 +1,7 @@
 import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import AltHomeView from '../views/AltHomeView.vue'
 import store from "../store"
 
 const router = createRouter({
@@ -45,10 +46,10 @@ const router = createRouter({
       component: () => import('../views/ScreeningsView.vue')
     },
     {
-      path: '/workshops',
-      name: 'workshops',
+      path: '/events',
+      name: 'events',
       
-      component: () => import('../views/WorkshopsView.vue')
+      component: () => import('../views/EventsView.vue')
     },
     {
       path: '/resources',

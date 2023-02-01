@@ -48,7 +48,7 @@
       <!-- <svg class="absolute block top-64 -right-20 z-10 h-full w-70 rotate-45 text-white opacity-60" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <polygon points="100,0 50,40 0,70 0,60" />
       </svg> -->
-      <div v-auto-animate class="card absolute w-50 bottom-5 right-8 bg-primary text-primary-content">
+      <div v-auto-animate class="card absolute w-50 bottom-5 left-[570px] bg-primary text-primary-content">
         <div class="card-body p-4">
           <h1 class="card-title italic text-md">Incoherence</h1>
           <p class=" text-xs">Dir. Emily Rodriguez</p>

@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: figure out why analytics break safari?
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { ref } from 'vue'
 import store from "../store"
@@ -39,9 +39,15 @@ const provider = new GoogleAuthProvider()
 const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      // if (result.authDomain !== 'yale.edu') {
-      //   throw('Please sign in with a Yale email address.')
-      // }
+      if (result.user.email.indexOf("@yale.edu") === -1) {
+        signOut(auth).then(() => {
+          // Sign-out successful.
+        }).catch((error) => {
+          // An error happened.
+        });
+        alert('Please sign in with a Yale email address.')
+        return
+      }
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;

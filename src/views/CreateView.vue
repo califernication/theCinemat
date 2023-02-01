@@ -1,8 +1,17 @@
 <!-- create view that allows user to define the details of their production -->
 <!-- Create a Vue view that asks a for title: String, tagline: String, contact: String, description: String, director: String, producer: String, contact: String, genre: String, poster: Reference, mediaUrls: [Reference], shootStart: timestamp, shootEnd: timestamp, positions: [String] if vacancies: bool, screenDate: timestamp if screening: bool and creates a Firestore document. -->
 
-<!-- TODO: UI looks like shit -->
 <template>
+        <input type="checkbox" id="my-modal" class="modal-toggle" />
+        <div class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg">Congratulations!</h3>
+            <p class="py-4">Your films has been submitted to our system! If you are looking to complete your crew, vacancies for your set have been published on the "Set Opportunities" page.</p>
+            <div class="modal-action">
+            <label for="my-modal" class="btn">Yay!</label>
+            </div>
+        </div>
+        </div>
     <div class="flex flex-col items-center min-h-screen py-2 pt-14">
         <h1 class="text-3xl font-bold text-primary-light">Create a Production</h1>
         <p class="text-primary-light">Fill out the form below to list a screeening, open positions on your set, or both.</p>
@@ -153,12 +162,21 @@
                     <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="date" id="screeningDate" v-model="screenDate" placeholder="Screening Date" />
                 </div>
             </div>
+            <!-- TODO: enable this field -->
+            <div v-auto-animate>
+                <div v-if="screening" class="flex flex-col gap-2 w-full px-4 py-4">
+                    <label class="text-primary-light" for="screeningLocation">Screening Location</label>
+                    <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="screeningLocation" v-model="screenLocation" placeholder="Screening Location" />
+                </div>
+            </div>
 
 
             <!-- TODO: add success modal -->
             <div class="flex flex-row justify-center w-full px-4 py-4">
                 <button for="my-modal" class="btn w-full px-4 py-2 text-white bg-primary-light rounded-md shadow-sm hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-light focus:ring-opacity-50">Submit</button>
             </div>
+
+            <!-- showModal -->
 
         </form>
     </div>
@@ -170,7 +188,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
 import store from "../store"
 
-const showModal = ref(false)
+const showModal = ref([])
 
 // create the 
 export default {
@@ -247,8 +265,10 @@ export default {
         user: store.getters.userEmail,
       };
 
-      this.showModal = true
+    //   this.showModal.value.push("success")
+      document.getElementById("my-modal").checked = true;
       console.log("sending film to firebase!")
+      console.log(document.getElementById("my-modal"))
       await addDoc(collection(db, "productions"), film);
     }
   },

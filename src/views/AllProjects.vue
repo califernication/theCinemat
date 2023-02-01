@@ -3,10 +3,20 @@
 <!-- Create a slate of all past projects -->
 
 <template>
-    <div class="flex flex-col w-full px-20 sm:px-28 md:px-44 lg:px-72 mt-14 gap-4">
-        <h1 class="text-primary text-5xl font-semibold underline tacking-wide">Cinemat-Sponsored Projects</h1>
-        <p class="text-md text-gray-500">The Cinemat position packets provide information about the responsibilities and guidelines for various Cinemat production roles. If you click the chevron symbol next to a packet, you can learn more about the role. You can also click on the packet to open it in a new tab. If you have any issues accessing the packets or if you want information about a role that is not listed, please contact thecinemat@yale.edu.</p>
-    </div>
+    <div class="flex flex-col w-full px-20 sm:px-28 md:px-44 lg:px-72 mt-14 mb-6 gap-4">
+        <h1 class="text-primary text-5xl font-semibold text-center tacking-wide">Cinemat-Sponsored Projects</h1>
+        <p class="text-md text-gray-500">A Cinemat supported production gets benefits such as funds from The Cinemat, access to Cinemat-owned equipment, and priority promotion in The Cinemat Newsletter.</p>
+        <div>
+          <ul class="text-md text-gray-500">To become a Cinemat-sponsored production: </ul>
+            <li class="text-md text-gray-500">The Director or the Producer of the film must be an official member of The Cinemat.</li>
+            <li class="text-md text-gray-500">At least two heads of departments must have worked on Cinemat Productions previously.</li>
+            <li class="text-md text-gray-500">Have at least three less experienced filmmakers mentored in specific departments.</li>
+            <li class="text-md text-gray-500">Prioritize cultivating a set environment centering teaching and learning.</li>
+            <li class="text-md text-gray-500">Submit an application to the Executive Board. Email <a class="text-bold underline text-primary-light" href="mailto:olivia.cevasco@yale.edu">olivia.cevasco@yale.edu</a> for more information. </li>
+        </div>
+
+        <p class="text-md text-gray-500">The Cinemat does support <a class="font-semibold">first-year films</a> crewed entirely by new filmmakers with experienced mentors advising the process through pre-production and on-set. If you wish to become a Cinemat Production as a first-year film, email <a class="text-bold underline text-primary-light" href="mailto:olivia.cevasco@yale.edu">olivia.cevasco@yale.edu</a> for more information.</p>
+      </div>
     <!-- <div class="flex justify-center">
       <div class="w-full max-w-md px-2 py-16 sm:px-0">
         <TabGroup>

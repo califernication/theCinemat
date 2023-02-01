@@ -30,7 +30,7 @@
             <h1 class="">
               <img class="block xl:inline" src="../assets/inverted-logo.svg" alt=""/>
             </h1>
-            <p class="pt-6 mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">A Yale University, student-led production company with the mission to provide a hands-on education in the craft of filmmaking. </p>
+            <p class="pt-6 mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">Yale University’s only student-led production company with the mission to provide a hands-on education in the craft of filmmaking.</p>
             <div class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               <div class="rounded-md shadow">
                 <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-light hover:bg-primary md:py-4 md:text-lg md:px-10"> Join a set </a>
@@ -88,20 +88,16 @@
         <div class="pt-12 sm:pt-16 lg:pt-20">
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">On a mission to empower students</h2>
           <div class="mt-6 space-y-6 text-gray-500">
-            <p class="text-lg">Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique pellentesque. Blandit amet, sed aenean erat arcu morbi. Cursus faucibus nunc nisl netus morbi vel porttitor vitae ut. Amet vitae fames senectus vitae.</p>
-            <p class="text-base leading-7">Sollicitudin tristique eros erat odio sed vitae, consequat turpis elementum. Lorem nibh vel, eget pretium arcu vitae. Eros eu viverra donec ut volutpat donec laoreet quam urna. Sollicitudin tristique eros erat odio sed vitae, consequat turpis elementum. Lorem nibh vel, eget pretium arcu vitae. Eros eu viverra donec ut volutpat donec laoreet quam urna.</p>
-            <p class="text-base leading-7">Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in venenatis vestibulum consectetur nibh id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra.</p>
+            <p class="text-lg">The Cinemat is more than a student organization. It’s a social enterprise.</p>
+            <p class="text-base leading-7">Our model prioritizes mentorship, community, and kindness. The base of our programming starts around technical workshops, providing educational equity to all our members.</p>
+            <p class="text-base leading-7">As members increase their technical skills, our programming expands to provide on-set opportunities through the production of narrative short films. Members get hands-on experience working on a film set and get the opportunity to participate on our own the 24-hour film festival.</p>
+            <p class="text-base leading-7">We also collaborate with local non-profits to create videos that raise awareness about important social issues. This provides members with an opportunity to apply their technical skills to make a positive impact on the community while also learning about the non-profits' mission.</p>
+            <p class="text-base leading-7">Want to join the movement? </p>
           </div>
         </div>
 
         <!-- Stats section -->
         <div class="mt-10">
-          <dl class="grid grid-cols-2 gap-x-4 gap-y-8">
-            <div v-for="stat in stats" :key="stat.label" class="border-t-2 border-gray-100 pt-6">
-              <dt class="text-base font-medium text-gray-500">{{ stat.label }}</dt>
-              <dd class="text-3xl font-bold tracking-tight text-gray-900">{{ stat.value }}</dd>
-            </div>
-          </dl>
           <div class="mt-10">
             <a href="#" class="text-base font-medium text-indigo-600">
               Learn more about membership

@@ -11,9 +11,12 @@
       @swiper="onSwiper"
       @slideChange="onSlideChange"
     >
-      <swiper-slide class="swiper-slide"><img src="../images/sample1.jpeg"></swiper-slide>
-      <swiper-slide class="swiper-slide"><img src="../images/sample2.jpeg"></swiper-slide>
-      <swiper-slide class="swiper-slide"><img src="../images/sample3.png"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/annelise+camera.jpg"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/charlie+Jonas.jpg"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/ciara+slate-1.jpg"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/eli+slate.jpg"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/Emily+light.jpg"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/Renee looking at monitor.jpg"></swiper-slide>
     </swiper>
 </template>
 

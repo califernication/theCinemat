@@ -12,7 +12,7 @@ For actors
     <!-- TODO: membership details -->
     <!-- TODO: center lol -->
         <div class="flex flex-col w-full px-20 sm:px-28 md:px-44 lg:px-72 mt-14 gap-4">
-            <h1 class="text-primary text-5xl font-semibold underline tacking-wide">Opportunities to Join a Set</h1>
+            <h1 class="text-primary text-5xl font-semibold text-center tacking-wide">Opportunities to Join a Set</h1>
             <!-- TODO: link to create Create your film here -->
             <p class="text-md text-gray-500">On this page, you will find a list of current open roles for student film sets. These roles range from directing and producing to cinematography and editing, and offer a unique opportunity for you to gain valuable experience and build your portfolio while working on a variety of exciting projects with a team of talented and dedicated student filmmakers.</p>
             <p class="text-md text-gray-500">To apply for a role, simply email the contact listen on the position and production you are interested in.</p>

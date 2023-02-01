@@ -26,17 +26,19 @@
           <div class="gap-10 flex flex-col md:flex-row md:gap-30">
             <div class="flex-1 space-y-5 sm:space-y-4">
               <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">About Us</h2>
-              <p class="text-xl text-gray-500">The Cinemat is a 501(c)3 focused on film production education through technical training and community building.</p>
-              <p class="text-xl text-gray-500">We are Yale University’s only film production organization. Our mission is to provide accessible practical film education and support film productions on campus with technical know-how, equipment, and financial aid. </p>
+              <p class="text-md text-gray-500">The Yale Cinematic Productions - A Student Alliance ("The Cinemat") is a 501(c)3 focused on film production education through technical training and community building.</p>
+              <p class="text-md text-gray-500">We are Yale University’s only film production organization. Our mission is to provide accessible practical film education and support film productions on campus with technical know-how, equipment, and financial aid.</p>
+              <p class="text-md italic text-gray-500">Founded in 2021 by Annaelise Kennedy in association with Evelyn Larson and the ‘Founding Members’ below.</p>
             </div>
             <div class="flex-1 space-y-5 sm:space-y-4">
               <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Offerings</h2>
               <ul class="list-disc px-6">
-                <li class="text-xl text-gray-500">Biannaul 24-hour Film Festival</li>
-                <li class="text-xl text-gray-500">Workshops on a variety of technical and artistic film skills</li>
-                <li class="text-xl text-gray-500">Hands-on production opportunities to apply skills learned in workshops</li>
-                <li class="text-xl text-gray-500">Community building events, including trivia nights, meet and greets, screenings, and more</li>
-                <li class="text-xl text-gray-500">Promotional, financial, technical, and material support for film productions on campus</li>
+                <li class="text-md text-gray-500">Biannaul 24-hour Film Festival</li>
+                <li class="text-md text-gray-500">Workshops on a variety of technical and artistic film skills</li>
+                <li class="text-md text-gray-500">Hands-on production opportunities to apply skills learned in workshops</li>
+                <li class="text-md text-gray-500">Community building events, including trivia nights, meet and greets, screenings, and more</li>
+                <li class="text-md text-gray-500">Promotional, financial, technical, and material support for film productions on campus</li>
+                <li class="text-md text-gray-500">A Fro-Film curriculum, specifically mentoring first-years through pre-production, production, and post</li>
               </ul>
             </div>
           </div>
@@ -46,19 +48,19 @@
 
         <!-- TODO: Membership -->
 
-        <div class="mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-18">
-          <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
-            <div class="space-y-5 sm:space-y-4">
-              <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Membership</h2>
-              <!-- <p class="text-xl text-gray-500">The 2022-2023 board is incredibly excited to support The Cinemat through the academic year. Please reach out if you have any questions!</p> -->
-            </div>
-            How to become a member
+        <div class="grid grid-flow-col gap-72 mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-18">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Membership</h2>
+            <!-- <p class="text-xl text-gray-500">The 2022-2023 board is incredibly excited to support The Cinemat through the academic year. Please reach out if you have any questions!</p> -->
+          </div>
+          <div>
+            <p>How to become a member</p>
           </div>
         </div>
 
         <!-- Affiliations -->
         <div class="pb-12 px-6 lg:px-8 lg:pb-18 max-w-7xl self-center">
-          <p class="text-2xl text-primary text-center">Our continous support to the Yale community is in great thanks to our affiliation with
+          <p class="text-lg text-primary text-center">Our continous support to the Yale community is in great thanks to our affiliation with
           <a class="text-primary-light font-medium underline decoration-2" href="https://ccam.yale.edu/" target="_blank" rel="noopener noreferrer">
             Yale’s Center for Collaborative Arts and Media (CCAM)
           </a>
