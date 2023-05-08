@@ -16,7 +16,7 @@
       <swiper-slide class="swiper-slide"><img src="../images/ciara+slate-1.jpg"></swiper-slide>
       <swiper-slide class="swiper-slide"><img src="../images/eli+slate.jpg"></swiper-slide>
       <swiper-slide class="swiper-slide"><img src="../images/Emily+light.jpg"></swiper-slide>
-      <swiper-slide class="swiper-slide"><img src="../images/Renee looking at monitor.jpg"></swiper-slide>
+      <swiper-slide class="swiper-slide"><img src="../images/Renee+looking+at+monitor.jpg"></swiper-slide>
     </swiper>
 </template>
 
