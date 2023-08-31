@@ -70,21 +70,24 @@
       <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
         <div class="lg:col-span-3">
           <ul role="list" class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
-            <li v-for="film in films" :key="film.title">
+            <li v-for="film in films" :key="film.id">
               <div class="card space-y-4 p-8 shadow-xl">
                 <h2 class="font-bold text-5xl text-center mt-4 tracking-tighter">
                     {{ film.title }}
                 </h2>
                 <div class="divider mb-4  mx-20"></div>
                 <div class="aspect-w-3 aspect-h-2">
-                  <iframe v-if="film.embededLink" class="aspect-w-3 aspect-h-2">
-                    {{ film.embededLink }}
+                  <iframe v-if="film.embededLink"
+                    :src="film.embededLink"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>>
                   </iframe>
-                  <img v-else class="rounded-lg object-cover shadow-lg" src="../images/sucession.jpg" alt="" />
+                  <img v-else class="rounded-lg object-cover shadow-lg" :src="film.poster" alt="" />
                 </div>
                 <div class="text-primary space-y-1 leading-6">
                   <h3 class="font-medium text-lg">{{ film.director }}</h3>
-                  <p class="text-primary-light text-md">Principal Photography: {{ film.shootStart }} to {{ film.shootEnd }}</p>
+                  <p class="text-primary-light text-md">Principal Photography: {{ formatDate(film.shootStart) }} to {{ formatDate(film.shootEnd) }}</p>
                 </div>
                 <div class="text-lg">
                   <p class="text-gray-500">{{ film.tagline }}</p>
@@ -98,10 +101,10 @@
                         </DisclosureButton>
                         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
                             <ul>
-                                <li v-for="[positionTitle, value] in film.crew" :key="index">
+                              <li v-for="(person, positionTitle, index) in film.crew" :key="index">
                                     <div class="flex justify-between">
                                         <p>{{ positionTitle }}</p>
-                                        <p>{{ value }}</p>
+                                        <p>{{ person }}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -117,10 +120,10 @@
                         </DisclosureButton>
                         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
                             <ul>
-                                <li v-for="[positionTitle, value] in film.crew" :key="index">
+                              <li v-for="(person, character, index) in film.cast" :key="index">
                                     <div class="flex justify-between">
-                                        <p>{{ positionTitle }}</p>
-                                        <p>{{ value }}</p>
+                                        <p>{{ character }}</p>
+                                        <p>{{ person }}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -138,8 +141,9 @@
 <script setup>
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-import { ref } from 'vue'
-import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
+import { ref, onMounted } from 'vue';
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
+import { getAllProjects } from '../firebase/index.js';
 
 const categories = ref({
   Benefits: [
@@ -178,77 +182,108 @@ const categories = ref({
   ],
 })
 
-const films = [
-    {
-        title: "A Fly in Buttermilk",
-        director: "Renee Theodore",
-        producer: "Annaelise Kennedy",
-        contact: "a.kennedy@yal.edu",
-        descripton: "blah blah",
-        tagline: "A fly in buttermilk explores race in collegiate Greek life through the experiences of a newly-elected frat black president.",
-        crew: new Map([
-            ["Director of Photography", 'Jonas Kilga'],
-            ["Director of Photography", 'Emely Rodriguez'],
-            ["Assistant Camera 1", 'Luis Gonzalez'],
-            ["Assistant Camera 2", 'Eli'],
-            ["Assistant Director 1", 'Ciara'],
-            ["Assistant Director 2", 'Daphne Joyce Wu'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-            ["Assistant Gaffer", 'Jessica Wang'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-             
-        ]),
-        cast: new Map([
-             
-        ]),
-        embededLink: NaN,
-        shootStart: "Novemeber 7th",
-        shootEnd: "Novemeber 11th",
-        imageUrl: "../images/sucession.jpg"
-    },
-    {
-      title: "Hangnails",
-        director: "Annaelise Kennedy",
-        producer: "Annaelise Kennedy",
-        contact: "a.kennedy@yal.edu",
-        descripton: "blah blah",
-        tagline: "A fly in buttermilk explores race in collegiate Greek life through the experiences of a newly-elected frat black president.",
-        crew: new Map([
-            ["Director of Photography", 'Jonas Kilga'],
-            ["Director of Photography", 'Emely Rodriguez'],
-            ["Assistant Camera 1", 'Luis Gonzalez'],
-            ["Assistant Camera 2", 'Eli'],
-            ["Assistant Director 1", 'Ciara'],
-            ["Assistant Director 2", 'Daphne Joyce Wu'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-            ["Assistant Gaffer", 'Jessica Wang'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-            ["Gaffer", 'Fernando Cuello Garcia'],
-             
-        ]),
-        cast: new Map([
-             
-        ]),
-        embededLink: "https://www.youtube.com/watch?v=flf7DOhG1CU",
-        shootStart: "Novemeber 7th",
-        shootEnd: "Novemeber 11th",
-        imageUrl: "../images/sucession.jpg"
-    },
-    {
-        title: "A Fly in Buttermilk",
-        director: "Renee Theodore",
-        producer: "Annaelise Kennedy",
-        contact: "a.kennedy@yal.edu",
-        descripton: "blah blah",
-        tagline: "A fly in buttermilk explores race in collegiate Greek life through the experiences of a newly-elected frat black president.",
-        crew: new Map(),
-        link: NaN,
-        shootStart: "Novemeber 7th",
-        shootEnd: "Novemeber 11th"
+const films = ref([]);
+
+onMounted(async () => {
+    try {
+        films.value = await getAllProjects();
+        console.log(films.value);
+        console.log(formatDate(films.value[0].shootStart));
+    } catch (error) {
+        console.error('Error fetching projects:', error);
     }
-]
+});
+
+function formatDate(firebaseTimestamp) {
+    const date = firebaseTimestamp.toDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const day = date.getDate();
+
+    let suffix = 'th';
+    if (day === 1 || day === 21 || day === 31) {
+        suffix = 'st';
+    } else if (day === 2 || day === 22) {
+        suffix = 'nd';
+    } else if (day === 3 || day === 23) {
+        suffix = 'rd';
+    }
+
+    const year = date.getFullYear();
+
+    return `${month} ${day}${suffix}, ${year}`;
+}
+
+// const films = [
+//     {
+//         title: "A Fly in Buttermilk",
+//         director: "Renee Theodore",
+//         producer: "Annaelise Kennedy",
+//         contact: "a.kennedy@yal.edu",
+//         descripton: "blah blah",
+//         tagline: "A fly in buttermilk explores race in collegiate Greek life through the experiences of a newly-elected frat black president.",
+//         crew: new Map([
+//             ["Director of Photography", 'Jonas Kilga'],
+//             ["Director of Photography", 'Emily Rodriguez'],
+//             ["Assistant Camera 1", 'Luis Gonzalez'],
+//             ["Assistant Camera 2", 'Eli'],
+//             ["Assistant Director 1", 'Ciara'],
+//             ["Assistant Director 2", 'Daphne Joyce Wu'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+//             ["Assistant Gaffer", 'Jessica Wang'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+             
+//         ]),
+//         cast: new Map([
+             
+//         ]),
+//         embededLink: NaN,
+//         shootStart: "Novemeber 7th",
+//         shootEnd: "Novemeber 11th",
+//         imageUrl: "../images/sucession.jpg"
+//     },
+//     {
+//       title: "Hangnails",
+//         director: "Annaelise Kennedy",
+//         producer: "Annaelise Kennedy",
+//         contact: "a.kennedy@yal.edu",
+//         descripton: "blah blah",
+//         tagline: "A fly in buttermilk explores race in collegiate Greek life through the experiences of a newly-elected frat black president.",
+//         crew: new Map([
+//             ["Director of Photography", 'Jonas Kilga'],
+//             ["Director of Photography", 'Emely Rodriguez'],
+//             ["Assistant Camera 1", 'Luis Gonzalez'],
+//             ["Assistant Camera 2", 'Eli'],
+//             ["Assistant Director 1", 'Ciara'],
+//             ["Assistant Director 2", 'Daphne Joyce Wu'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+//             ["Assistant Gaffer", 'Jessica Wang'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+//             ["Gaffer", 'Fernando Cuello Garcia'],
+             
+//         ]),
+//         cast: new Map([
+             
+//         ]),
+//         embededLink: "https://www.youtube.com/watch?v=flf7DOhG1CU",
+//         shootStart: "Novemeber 7th",
+//         shootEnd: "Novemeber 11th",
+//         imageUrl: "../images/sucession.jpg"
+//     },
+//     {
+//         title: "A Fly in Buttermilk",
+//         director: "Renee Theodore",
+//         producer: "Annaelise Kennedy",
+//         contact: "a.kennedy@yal.edu",
+//         descripton: "blah blah",
+//         tagline: "A fly in buttermilk explores race in collegiate Greek life through the experiences of a newly-elected frat black president.",
+//         crew: new Map(),
+//         link: NaN,
+//         shootStart: "Novemeber 7th",
+//         shootEnd: "Novemeber 11th"
+//     }
+// ]
 
 </script>

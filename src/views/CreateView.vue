@@ -215,14 +215,19 @@ export default {
   },
   methods: {
     async createFilm() {
-        // TODO: maybe safeguard that only imgs can be uploaded
-      // upload poster
-      const file = this.$refs.posterInput.files[0];
-      const storageRef = ref(storage, `${this.title}/poster`)
-      await uploadBytes(storageRef, file).then(async (snapshot) => {
-        const url = await getDownloadURL(storageRef);
-        this.posterUrl = url;
-      });
+        const file = this.$refs.posterInput.files[0];
+        
+        // Check if the file is an image
+        if (!file.type.startsWith('image/')) {
+            alert('Only images are accepted for the poster.');
+            return; 
+        }
+
+        const storageRef = ref(storage, `${this.title}/poster`);
+        await uploadBytes(storageRef, file).then(async (snapshot) => {
+            const url = await getDownloadURL(storageRef);
+            this.posterUrl = url;
+        });
 
       // upload media
       const files = this.$refs.mediaInput.files;

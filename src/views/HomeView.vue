@@ -1,7 +1,7 @@
 <template>
   <!-- TODO: fix z-values -->
   <div class="relative bg-gray-50 overflow-hidden">
-    <div class="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full" aria-hidden="true">
+    <div class="block absolute inset-y-0 h-full w-full" aria-hidden="true">
       <div class="relative h-full max-w-7xl mx-auto">
         <svg class="absolute right-full transform translate-y-1/4 translate-x-1/4 lg:translate-x-1/2" width="404" height="784" fill="none" viewBox="0 0 404 784">
           <defs>
@@ -24,8 +24,9 @@
 
     <div class="relative">
       <!-- create a flex container so that the title and carousel can be side by side -->
-      <div class="flex flex-wrap justify-center lg:justify-start lg:flex-nowrap min-h-[1000px] lg:min-h-[500px] ">
-        <main class="absolute z-20 mt-16 px-4 sm:mt-24 max-w-xl lg:ml-16 xl:ml-36 pt-6 pb-16 sm:pb-24">
+      <!-- original <div class="flex flex-wrap justify-center lg:justify-start lg:flex-nowrap min-h-[1000px] lg:min-h-[500px]"> -->
+      <div class="flex flex-row flex-wrap justify-center lg:justify-start lg:flex-nowrap min-h-[1000px] lg:min-h-[500px]">
+        <main class="absolute z-20 mt-16 px-12 sm:px-4 sm:mt-24 max-w-xl lg:ml-16 xl:ml-36 pt-6 pb-16 sm:pb-24">
           <div class="text-center">
             <h1 class="">
               <img class="block xl:inline" src="../assets/inverted-logo.svg" alt=""/>
@@ -41,8 +42,8 @@
             </div>
           </div>
         </main>
-        <div class="w-1/2 dummylol"></div>
-        <div class="flex lg:w-1/2">
+        <div class="flex-1 dummylol "></div>
+        <div class="flex flex-1 lg:w-1/2">
           <div>
             <svg class="hidden lg:block absolute z-10 h-full w-40 text-gray-50" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <polygon points="0,0 100,0 50,100 0,100" />
@@ -55,14 +56,16 @@
               <polygon points="50,0 100,0 50,100 0,100" />
             </svg> -->
           </div>
-          <Carousel class="w-screen" />
+          <div>
+            <Carousel class="w-screen" />
+          </div>
         </div>
 
 
       </div>
     </div>
     <!-- SECOND PAGE -->
-    <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
+    <div class="mt-12 sm:mt-0 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
       <div class="relative sm:py-16 lg:py-0">
         <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
           <div class="absolute inset-y-0 right-1/2 w-full rounded-r-3xl bg-gray-50 lg:right-72" />
@@ -85,7 +88,7 @@
       
       <div class="relative mx-auto max-w-md px-6 sm:max-w-3xl lg:px-0">
         <!-- Content area -->
-        <div class="pt-12 sm:pt-16 lg:pt-20">
+        <div class="pt-12 sm:pt-0 lg:pt-20">
           <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">On a mission to empower students</h2>
           <div class="mt-6 space-y-6 text-gray-500">
             <p class="text-lg">The Cinemat is more than a student organization. It’s a social enterprise.</p>
@@ -99,7 +102,7 @@
         <!-- Stats section -->
         <div class="mt-10">
           <div class="mt-10">
-            <a href="#" class="text-base font-medium text-indigo-600">
+            <a href="/about" class="text-lg font-medium text-indigo-600">
               Learn more about membership
               <span aria-hidden="true"> &rarr;</span>
             </a>
@@ -109,7 +112,7 @@
     </div>
   </div>
 
-  <div class="relative bg-gray-50 py-16 sm:py-24">
+  <div class="relative bg-gray-50 sm:py-6">
     
   </div>
 </template>

@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 lg:justify-start lg:space-x-10">
           <div class="flex justify-start lg:w-0 lg:flex-1">
             <router-link to="/">
-              <span class="sr-only">Workflow</span>
+              <span class="sr-only">Cinemat Logo</span>
               <img class="h-8 w-auto sm:h-10" src="../assets/inverted-icon.svg" alt="" />
             </router-link>
           </div>
@@ -145,9 +145,10 @@
             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
               <div class="pt-5 pb-6 px-5">
                 <div class="flex items-center justify-between">
-                  <div>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-primary-light.svg" alt="Workflow" />
-                  </div>
+                  <router-link to="/">
+                    <span class="sr-only">Cinemat Logo</span>
+                    <img class="h-8 w-auto sm:h-10" src="../assets/inverted-icon.svg" alt="" />
+                  </router-link>
                   <div class="-mr-2">
                     <PopoverButton class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-light">
                       <span class="sr-only">Close menu</span>

@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: figure out why analytics break safari?
 // import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { ref } from 'vue'
@@ -35,7 +35,7 @@ const storage = getStorage(app);
 
 const provider = new GoogleAuthProvider()
 
-// TODO: restrict to Yale email addresses
+// TODO: fix the yale line is ugly lol
 const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -79,9 +79,21 @@ const signInWithGoogle = () => {
     });
 }
 
+const getAllProjects = async () => {
+  const allProjectsRef = collection(db, 'allProjects');
+  const querySnapshot = await getDocs(allProjectsRef);
+  const projects = [];
+  querySnapshot.forEach((doc) => {
+      // console.log(doc.id, " => ", doc.data());
+      projects.push({ id: doc.id, ...doc.data() });
+  });
+  return projects;
+}
+
 export {
     db,
     auth,
     storage,
-    signInWithGoogle
+    signInWithGoogle,
+    getAllProjects
 }

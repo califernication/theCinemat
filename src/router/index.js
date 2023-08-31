@@ -57,7 +57,6 @@ const router = createRouter({
       
       component: () => import('../views/StudentResourcesView.vue')
     },
-    // TODO: lock this route to logged in users
     {
       path: '/create',
       name: 'create',
@@ -70,6 +69,40 @@ const router = createRouter({
             name: 'home',
           } 
         }
+
+        return true
+      }),
+    },
+    {
+      path: '/edit',
+      name: 'edit',
+      
+      component: () => import('../views/EditView.vue'),
+      beforeEnter: ((to) => {
+        if (store.getters.user.loggedIn === false) {
+          alert("Log-in with your netId!")
+          return {
+            name: 'home',
+          } 
+        }
+
+        return true
+      }),
+    },
+    {
+      
+      path: '/edit/:id',
+      name: 'EditOne',
+      props: true,
+      component: () => import('../views/EditOneView.vue'),
+      beforeEnter: ((to) => {
+        if (store.getters.user.loggedIn === false) {
+          alert("Log-in with your netId!")
+          return {
+            name: 'home',
+          } 
+        }
+        // TODO: gate if the user doesn't own the film with the particular id
 
         return true
       }),

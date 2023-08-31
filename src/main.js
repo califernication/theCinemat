@@ -15,3 +15,4 @@ app.mount('#app')
 
 // TODO: add a 404 page
 // TODO: add auto-animate https://auto-animate.formkit.com/#usage
+// TODO: make links (buttons and href text actually direct somewher)
