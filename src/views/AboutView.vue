@@ -106,11 +106,10 @@
         <ul role="list" class="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6">
           <li v-for="person in members" :key="person.name">
             <div class="space-y-4">
-              <img class="mx-auto h-20 w-20 rounded-full lg:h-24 lg:w-24" :src="person.imageUrl" alt="" />
               <div class="space-y-2">
                 <div class="text-xs font-medium lg:text-sm">
                   <h3>{{ person.name }}</h3>
-                  <p class="text-indigo-600">{{ person.role }}</p>
+                  <p class="text-indigo-600">{{ person.classYear }}</p>
                 </div>
               </div>
             </div>
@@ -165,8 +164,10 @@
 //   },
 // ]
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { collection } from "firebase/firestore";
+import { db } from "../firebase/index.js";
+import { getDocs } from "firebase/firestore";
+
 
 export default {
     data() {
@@ -180,17 +181,26 @@ export default {
     },
     methods: {
         async fetchMembersFromFirestore() {
-            const db = firebase.firestore();
-            const membersCollection = db.collection('members');
-
-            try {
-                const snapshot = await membersCollection.get();
-                snapshot.forEach(doc => {
-                    this.members.push({ id: doc.id, ...doc.data() });
-                });
-            } catch (error) {
-                console.error("Error fetching members:", error);
-            }
+          try {
+            const membersCollection = await getDocs(collection(db, "members"))
+            membersCollection.forEach((doc) => {
+              const member = {
+                name: doc.data().name,
+                email: doc.data().email,
+                classYear: doc.data().classYear,
+                role: doc.data().role,
+                imageUrl: doc.data().imageUrl,
+              }
+              if (doc.data().role === "President" || doc.data().role === "Vice President" || doc.data().role === "Secretary" || doc.data().role === "Treasurer") {
+                this.leadership.push(member)
+              } else {
+                this.members.push(member)
+              }
+            })
+          }
+          catch (error) {
+            console.log(error)
+          } 
         }
     }
 }

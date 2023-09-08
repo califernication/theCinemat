@@ -59,9 +59,9 @@ For actors
 
 <script setup>
  
-import { collection, query, where } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
-import { onMounted, ref, reactive } from "vue";
+import { onMounted, ref } from "vue";
 import { db } from "../firebase/index.js"
 
 const opportunities = ref([])
