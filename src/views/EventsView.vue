@@ -30,7 +30,7 @@ export default {
 
 <template>
     <div class="flex flex-col w-full px-20 sm:px-28 md:px-44 lg:px-72 mt-14 mb-6 gap-4">
-        <h1 class="text-primary text-5xl font-semibold text-center tacking-wide">Events</h1>
+        <h1 class="text-primary text-5xl font-semibold text-center tacking-wide">Calendar</h1>
         <p class="text-md text-gray-500">Our monthly calendar showcases our technical film workshops, social events, talks from special guests, and more! These are the same events shared on our weekly newsletter.</p>
     </div>
     <div class="flex justify-center px-20 sm:px-28 md:px-44 lg:px-72">

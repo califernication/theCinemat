@@ -46,8 +46,8 @@ const router = createRouter({
       component: () => import('../views/ScreeningsView.vue')
     },
     {
-      path: '/events',
-      name: 'events',
+      path: '/events/calendar',
+      name: 'calendar',
       
       component: () => import('../views/EventsView.vue')
     },
