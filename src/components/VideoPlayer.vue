@@ -6,7 +6,6 @@
   
   <script>
   import videojs from "video.js"
-  // import "../styles/videojs.css"
   
   export default {
     name: 'VideoPlayer',
