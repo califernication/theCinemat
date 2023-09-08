@@ -1,0 +1,1 @@
+import{o,c as t,i as a,a1 as s}from"./index.950f1c62.js";const c={__name:"TestView",setup(n){return(e,r)=>(o(),t("div",null,[a(s,{options:e.videoOptions},null,8,["options"])]))}};export{c as default};
