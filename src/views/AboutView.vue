@@ -1,19 +1,4 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
+<!-- TODO: move Membership to its own page -->
 <template>
   <div class="about">
     <div class="bg-white">
@@ -28,8 +13,17 @@
               <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">About Us</h2>
               <p class="text-md text-gray-500">The Yale Cinematic Productions - A Student Alliance ("The Cinemat") is a 501(c)3 focused on film production education through technical training and community building.</p>
               <p class="text-md text-gray-500">We are Yale University’s only film production organization. Our mission is to provide accessible practical film education and support film productions on campus with technical know-how, equipment, and financial aid.</p>
-              <p class="text-md italic text-gray-500">Founded in 2021 by Annaelise Kennedy in association with Evelyn Larson and the ‘Founding Members’ below.</p>
+              <p class="text-sm italic text-gray-500">Founded in 2021 by Annaelise Kennedy in association with Evelyn Larson and the ‘Founding Members’ below:</p>
+              <ul>
+                <li class="text-sm text-gray-500">Jonas Kilga (Vice President)</li>
+                <li class="text-sm text-gray-500">Charlie Gleberman (Director of Development/Developed Workshops)</li>
+                <li class="text-sm text-gray-500">Annelise Ratner (Developed Workshops)</li>
+                <li class="text-sm text-gray-500">Kari Hustad (Head of Education)</li>
+                <li class="text-sm text-gray-500">Maggie Schyner (Director of Marketing & Communications)</li>
+              </ul>
+              
             </div>
+            
             <div class="flex-1 space-y-5 sm:space-y-4">
               <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Offerings</h2>
               <ul class="list-disc px-6">
@@ -54,7 +48,14 @@
             <!-- <p class="text-xl text-gray-500">The 2022-2023 board is incredibly excited to support The Cinemat through the academic year. Please reach out if you have any questions!</p> -->
           </div>
           <div>
-            <p>How to become a member</p>
+            <p>To become a member, one must complete 2 out of 4 requirements and apply through the google form for membership.</p>
+            <ul class="list-disc px-6">
+              <li class="text-md text-gray-500">Work on a Cinemat approved production.</li>
+              <li class="text-md text-gray-500">Attend 2 Cinemat Workshops.</li>
+              <li class="text-md text-gray-500">Participate in the 24hr film festival.</li>
+              <li class="text-md text-gray-500">Come to 3 board meetings.</li>
+            </ul>
+            <p>Becoming a member allows you to apply for The Cinemat's food award grant, use The Cinemat's non-profit status for in-kind donations of your films, and run for board positions. You also get to sign your name on our Cine-Apple Box, a Cinemat tradition at initiation!</p>
           </div>
         </div>
 
@@ -103,7 +104,7 @@
           <p class="text-xl text-gray-500">The 2022-2023 memeber cohort. Take a look at this page for some information on how to become a member.</p>
         </div>
         <ul role="list" class="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6">
-          <li v-for="person in people" :key="person.name">
+          <li v-for="person in members" :key="person.name">
             <div class="space-y-4">
               <img class="mx-auto h-20 w-20 rounded-full lg:h-24 lg:w-24" :src="person.imageUrl" alt="" />
               <div class="space-y-2">
@@ -124,44 +125,74 @@
   </div>
 </template>
 
-<script setup>
-const leadership = [
-  {
-    name: 'Soojin Park',
-    role: 'President',
-    imageUrl:
-      'https://bloximages.newyork1.vip.townnews.com/oanow.com/content/tncms/assets/v3/editorial/f/6f/f6fe7948-be65-11eb-ab73-c7b9f3e9848b/60aeb7df00925.image.jpg?crop=1567%2C1175%2C98%2C0&resize=1567%2C1175&order=crop%2Cresize',
-    bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Daphne Joyce Wu',
-    role: 'Vice President',
-    imageUrl:
-      'https://bloximages.chicago2.vip.townnews.com/captimes.com/content/tncms/assets/v3/editorial/5/5d/55db1acd-7bcb-5953-9d98-195bc5d55ea8/62e6b6f4b1cd2.image.jpg?resize=1763%2C1175',
-    bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Olivia Cevasco',
-    role: 'Secretary',
-    imageUrl:
-      'https://media.licdn.com/dms/image/C4E03AQHlXdncW9Isbw/profile-displayphoto-shrink_800_800/0/1639489288052?e=1677715200&v=beta&t=iKlFvMa3hcq7LLuhYpxHGPclT49bGMEQovF7dZ1DdY8',
-    bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  {
-    name: 'Nydia del Carmen',
-    role: 'Treasurer',
-    imageUrl:
-      'https://media.licdn.com/dms/image/C5603AQEMcmXiEfNHfg/profile-displayphoto-shrink_800_800/0/1656473372257?e=1677715200&v=beta&t=U5bQWlyeMb_RTAzpke_UmaLfgyV0x4cCyITJ1EJxLes',
-    bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-    twitterUrl: '#',
-    linkedinUrl: '#',
-  },
-  // More people...
-]
+<script>
+// const leadership = [
+//   {
+//     name: 'Soojin Park',
+//     role: 'President',
+//     imageUrl:
+//       'https://bloximages.newyork1.vip.townnews.com/oanow.com/content/tncms/assets/v3/editorial/f/6f/f6fe7948-be65-11eb-ab73-c7b9f3e9848b/60aeb7df00925.image.jpg?crop=1567%2C1175%2C98%2C0&resize=1567%2C1175&order=crop%2Cresize',
+//     bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+//     twitterUrl: '#',
+//     linkedinUrl: '#',
+//   },
+//   {
+//     name: 'Daphne Joyce Wu',
+//     role: 'Vice President',
+//     imageUrl:
+//       'https://bloximages.chicago2.vip.townnews.com/captimes.com/content/tncms/assets/v3/editorial/5/5d/55db1acd-7bcb-5953-9d98-195bc5d55ea8/62e6b6f4b1cd2.image.jpg?resize=1763%2C1175',
+//     bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+//     twitterUrl: '#',
+//     linkedinUrl: '#',
+//   },
+//   {
+//     name: 'Olivia Cevasco',
+//     role: 'Secretary',
+//     imageUrl:
+//       'https://media.licdn.com/dms/image/C4E03AQHlXdncW9Isbw/profile-displayphoto-shrink_800_800/0/1639489288052?e=1677715200&v=beta&t=iKlFvMa3hcq7LLuhYpxHGPclT49bGMEQovF7dZ1DdY8',
+//     bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+//     twitterUrl: '#',
+//     linkedinUrl: '#',
+//   },
+//   {
+//     name: 'Nydia del Carmen',
+//     role: 'Treasurer',
+//     imageUrl:
+//       'https://media.licdn.com/dms/image/C5603AQEMcmXiEfNHfg/profile-displayphoto-shrink_800_800/0/1656473372257?e=1677715200&v=beta&t=U5bQWlyeMb_RTAzpke_UmaLfgyV0x4cCyITJ1EJxLes',
+//     bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+//     twitterUrl: '#',
+//     linkedinUrl: '#',
+//   },
+// ]
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+export default {
+    data() {
+        return {
+            leadership: [],
+            members: []
+        };
+    },
+    mounted() {
+        this.fetchMembersFromFirestore();
+    },
+    methods: {
+        async fetchMembersFromFirestore() {
+            const db = firebase.firestore();
+            const membersCollection = db.collection('members');
+
+            try {
+                const snapshot = await membersCollection.get();
+                snapshot.forEach(doc => {
+                    this.members.push({ id: doc.id, ...doc.data() });
+                });
+            } catch (error) {
+                console.error("Error fetching members:", error);
+            }
+        }
+    }
+}
+
 </script>

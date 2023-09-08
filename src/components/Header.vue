@@ -1,3 +1,5 @@
+<!-- TODO: make events a dropdown with calendar, frofilm, 24hours, etc -->
+
 <template>
   <div class="idk"></div>
   <div class="app-main z-30">

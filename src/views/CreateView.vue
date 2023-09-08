@@ -1,16 +1,22 @@
 <!-- create view that allows user to define the details of their production -->
 <!-- Create a Vue view that asks a for title: String, tagline: String, contact: String, description: String, director: String, producer: String, contact: String, genre: String, poster: Reference, mediaUrls: [Reference], shootStart: timestamp, shootEnd: timestamp, positions: [String] if vacancies: bool, screenDate: timestamp if screening: bool and creates a Firestore document. -->
 
+<!-- TODO: add sexual intimacy coordinator and fight coordinator. DONE CHECK FIREBASE --> 
+<!-- TODO: organize by alphabetical order -->
+<!-- TODO: add actor page -->
+<!-- TODO: click on names and see everything -->
+<!-- TODO: make asterisks to Cinemat sponsored film -->
+
 <template>
         <input type="checkbox" id="my-modal" class="modal-toggle" />
         <div class="modal">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg">Congratulations!</h3>
-            <p class="py-4">Your films has been submitted to our system! If you are looking to complete your crew, vacancies for your set have been published on the "Set Opportunities" page.</p>
-            <div class="modal-action">
-            <label for="my-modal" class="btn">Yay!</label>
+            <div class="modal-box">
+                <h3 class="font-bold text-lg">Congratulations!</h3>
+                <p class="py-4">Your film has been submitted to our system! If you are looking to complete your crew, vacancies for your set have been published on the "Set Opportunities" page.</p>
+                <div class="modal-action">
+                    <label @click="redirectToOpportunitiesForFilmmakers" class="btn">Go to your published production</label>
+                </div>
             </div>
-        </div>
         </div>
     <div class="flex flex-col items-center min-h-screen py-2 pt-14">
         <h1 class="text-3xl font-bold text-primary-light">Create a Production</h1>
@@ -24,7 +30,7 @@
             <div class="flex flex-row gap-4 w-full px-4 py-4">
                 <div class="flex flex-col gap-2 w-1/2">
                     <label class="text-primary-light" for="director">Director</label>
-                    <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="director" v-model="director" placeholder="" />
+                    <input required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="director" v-model="director" placeholder="" />
                 </div>
                 <div class="flex flex-col gap-2 w-1/2">
                     <label class="text-primary-light" for="producer">Producer</label>
@@ -45,11 +51,11 @@
             </div>
             <div class="flex flex-col gap-2 w-full px-4 py-4">
                 <label class="text-primary-light" for="contact">Contact</label>
-                <input class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="text" id="contact" v-model="contact" placeholder="email@yale.edu"/>
+                <input required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" type="email" id="contact" v-model="contact" placeholder="email@yale.edu"/>
             </div>
             <div class="flex flex-col gap-2 w-full px-4 py-4">
                 <label class="text-primary-light" for="description">Description</label>
-                <textarea class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" id="description" v-model="description" placeholder="Description"></textarea>
+                <textarea required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" id="description" v-model="description" placeholder="Description"></textarea>
             </div>
             <!-- TODO: choose files should be rounded -->
             <div class="flex flex-row gap-4 w-full px-4 py-4">
@@ -95,14 +101,8 @@
                         </li>
                         <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                             <div class="flex items-center py-2 gap-2">
-                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Assistant Camera 1" id="Assistant Camera 1" />
-                                <label for="Assistant Camera 1">Assistant Camera 1</label>
-                            </div>
-                        </li>
-                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
-                            <div class="flex items-center py-2 gap-2">
-                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Assistant Camera 2" id="Assistant Camera 2" />
-                                <label for="Assistant Camera 2">Assistant Camera 2</label>
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Assistant Camera" id="Assistant Camera" />
+                                <label for="Assistant Camera">Assistant Camera</label>
                             </div>
                         </li>
                         <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
@@ -141,10 +141,74 @@
                                 <label for="Assistant Director">Assistant Director</label>
                             </div>
                         </li>
-                        <li class="w-full rounded-t-lg border-gray-200 dark:border-gray-600">
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                             <div class="flex items-center py-2 gap-2">
                                 <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Assistant Producer" id="Assistant Producer" />
                                 <label for="Assistant Producer">Assistant Producer</label>
+                            </div>
+                        </li>
+
+                        <!-- PA -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="PA" id="PA" />
+                                <label for="PA">Production Assistant (PA)</label>
+                            </div>
+                        </li>
+
+                        <!-- Grip -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Grip" id="Grip" />
+                                <label for="Grip">Grip</label>
+                            </div>
+                        </li>
+
+                        <!-- Composer -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Composer" id="Composer" />
+                                <label for="Composer">Composer</label>
+                            </div>
+                        </li>
+
+                        <!-- Production (Set) Designer -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Production (Set) Designer" id="Production (Set) Designer" />
+                                <label for="Production (Set) Designer">Production (Set) Designer</label>
+                            </div>
+                        </li>
+
+                        <!-- Sound Recordist -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Sound Recordist" id="Sound Recordist" />
+                                <label for="Sound Recordist">Sound Recordist</label>
+                            </div>
+                        </li>
+
+                        <!-- Costume Designer -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Costume Designer" id="Costume Designer" />
+                                <label for="Costume Designer">Costume Designer</label>
+                            </div>
+                        </li>
+
+                        <!-- Intimacy Coordinator -->
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Intimacy Coordinator" id="Intimacy Coordinator" />
+                                <label for="Intimacy Coordinator">Intimacy Coordinator</label>
+                            </div>
+                        </li>
+
+                        <!-- Fight Coordinator -->
+                        <li class="w-full rounded-t-lg border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center py-2 gap-2">
+                                <input class="checkbox checkbox-xs" type="checkbox" ref="checkbox" name="position" value="Fight Coordinator" id="Fight Coordinator" />
+                                <label for="Fight Coordinator">Fight Coordinator</label>
                             </div>
                         </li>
                     </ul>
@@ -218,7 +282,7 @@ export default {
         const file = this.$refs.posterInput.files[0];
         
         // Check if the file is an image
-        if (!file.type.startsWith('image/')) {
+        if (file && !file.type.startsWith('image/')) {
             alert('Only images are accepted for the poster.');
             return; 
         }
@@ -275,6 +339,10 @@ export default {
       console.log("sending film to firebase!")
       console.log(document.getElementById("my-modal"))
       await addDoc(collection(db, "productions"), film);
+    },
+
+    redirectToOpportunitiesForFilmmakers() {
+        this.$router.push({ name: 'opportunitiesFilmmakers' });
     }
   },
 };

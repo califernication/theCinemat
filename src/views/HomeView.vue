@@ -1,5 +1,6 @@
 <template>
   <!-- TODO: fix z-values -->
+  <!-- TODO: add an upcoming CinematEvent between the two pages -->
   <div class="relative bg-gray-50 overflow-hidden">
     <div class="block absolute inset-y-0 h-full w-full" aria-hidden="true">
       <div class="relative h-full max-w-7xl mx-auto">
