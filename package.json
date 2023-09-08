@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build && npm run add-domain",
     "preview": "vite preview --port 4173",
-    "add-domain": "echo \"yalecinemat.com\" > build/CNAME"
+    "add-domain": "echo \"yalecinemat.com\" > CNAME"
   },
   "dependencies": {
     "@coreui/coreui": "^4.2.4",
