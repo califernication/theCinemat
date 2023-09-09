@@ -5,7 +5,7 @@
     <input type="checkbox" id="edit-modal" class="modal-toggle" />
     <div class="modal">
         <div class="modal-box">
-            <h3 class="font-bold text-lg">Edit Production Details</h3>
+            <h3 class="font-bold text-lg">View My Production</h3>
             <p class="py-4">Modify the details of your film production below.</p>
 
             <div class="modal-action">

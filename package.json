@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run add-domain",
+    "build": "vite build",
     "preview": "vite preview --port 4173",
-    "add-domain": "echo \"yalecinemat.com\" > ./build/CNAME"
+    "add-domain": "echo \"yalecinemat.com\" > ./build/CNAME this does not work"
   },
   "dependencies": {
     "@coreui/coreui": "^4.2.4",
