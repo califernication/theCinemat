@@ -57,6 +57,7 @@ onMounted(async () => {
 });
 
 function formatDate(firebaseTimestamp) {
+  try {
     if (firebaseTimestamp === "TBD") {
         return "TBD";
     }
@@ -76,6 +77,11 @@ function formatDate(firebaseTimestamp) {
     const year = date.getFullYear();
 
     return `${month} ${day}${suffix}, ${year}`;
+  }
+  catch (error) {
+    console.log(error)
+    return "TBD";
+  }
 }
 
 </script>

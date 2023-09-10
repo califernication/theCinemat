@@ -383,6 +383,13 @@ export default {
         user: store.getters.userEmail,
         roles: this.characters,
       };
+      const keyValueCharacters = this.characters.reduce((acc, character) => {
+        acc[character.name] = character.description;
+        return acc;
+      }, {});
+
+      film.roles = keyValueCharacters;
+
       const productionId = this.$route.params.id;
       const productionRef = doc(db, "productions", productionId);
       await updateDoc(productionRef, film);

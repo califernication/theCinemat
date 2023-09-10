@@ -367,6 +367,13 @@ export default {
         roles: this.characters,
       };
 
+      const keyValueCharacters = this.characters.reduce((acc, character) => {
+        acc[character.name] = character.description;
+        return acc;
+      }, {});
+
+    film.roles = keyValueCharacters;
+
     //   this.showModal.value.push("success")
       document.getElementById("my-modal").checked = true;
       console.log(this.characters);
