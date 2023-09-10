@@ -40,25 +40,6 @@
 
         <!-- TODO: add photo reel -->
 
-        <!-- TODO: Membership -->
-
-        <div class="grid grid-flow-col gap-72 mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-18">
-          <div>
-            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Membership</h2>
-            <!-- <p class="text-xl text-gray-500">The 2022-2023 board is incredibly excited to support The Cinemat through the academic year. Please reach out if you have any questions!</p> -->
-          </div>
-          <div>
-            <p>To become a member, one must complete 2 out of 4 requirements and apply through the google form for membership.</p>
-            <ul class="list-disc px-6">
-              <li class="text-md text-gray-500">Work on a Cinemat approved production.</li>
-              <li class="text-md text-gray-500">Attend 2 Cinemat Workshops.</li>
-              <li class="text-md text-gray-500">Participate in the 24hr film festival.</li>
-              <li class="text-md text-gray-500">Come to 3 board meetings.</li>
-            </ul>
-            <p>Becoming a member allows you to apply for The Cinemat's food award grant, use The Cinemat's non-profit status for in-kind donations of your films, and run for board positions. You also get to sign your name on our Cine-Apple Box, a Cinemat tradition at initiation!</p>
-          </div>
-        </div>
-
         <!-- Affiliations -->
         <div class="pb-12 px-6 lg:px-8 lg:pb-18 max-w-7xl self-center">
           <p class="text-lg text-primary text-center">Our continous support to the Yale community is in great thanks to our affiliation with
@@ -83,7 +64,7 @@
               <ul role="list" class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0 lg:gap-x-8">
                 <li v-for="person in leadership" :key="person.name">
                   <div class="flex items-center space-x-4 lg:space-x-6">
-                    <img class="h-16 w-16 rounded-full lg:h-20 lg:w-20" :src="person.imageUrl" alt="" />
+                    <img class="h-16 w-16 rounded-full lg:h-20 lg:w-20 object-cover" :src="person.imageURL" alt="" />
                     <div class="space-y-1 text-lg font-medium leading-6">
                       <h3>{{ person.name }}</h3>
                       <p class="text-indigo-600">{{ person.role }}</p>
@@ -189,9 +170,9 @@ export default {
                 email: doc.data().email,
                 classYear: doc.data().classYear,
                 role: doc.data().role,
-                imageUrl: doc.data().imageUrl,
+                imageURL: doc.data().imageURL,
               }
-              if (doc.data().role === "President" || doc.data().role === "Vice President" || doc.data().role === "Secretary" || doc.data().role === "Treasurer") {
+              if (doc.data().role) {
                 this.leadership.push(member)
               } else {
                 this.members.push(member)

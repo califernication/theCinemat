@@ -19,9 +19,9 @@ export default {
           { title: 'Meeting', start: new Date() }
         ],
         googleCalendarApiKey: 'AIzaSyD_oqepo7ebC5k4u2xaVa5nZ3uy3UsJexU',
-        events: {
-          googleCalendarId: '8bc87f1ac86a518a0e9962d29982a0222795dc96a34188293511e6e6a39f716e@group.calendar.google.com'
-        }
+        events: 'en.usa#holiday@group.v.calendar.google.com'
+          // googleCalendarId: 'c_8efe8b6ba8fd5a81fddc90777bf7d67a379c46d0f0c0d28fe1241c2efa92fe97@group.calendar.google.com'
+        // }
       }
     }
   }

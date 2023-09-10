@@ -15,10 +15,10 @@ For actors
             <p class="text-md text-gray-500">To apply for a role, simply email the contact listen on the position and production you are interested in.</p>
             <p class="text-md text-gray-500">We encourage all students, regardless of their major or experience level, to apply. We value diversity and are committed to creating a welcoming and inclusive environment for all. We look forward to receiving your application and potentially working with you on a film set in the near future!</p>
         </div>
-        <div v-auto-animate class="flex flex-col flex-wrap max-h-[800px] gap-10 mt-16 justify-center align-middle m-auto max-w-3xl">
-            <div class="flex flex-none flex-col" v-for="[positionTitle, value] in reactiveMap" :key="index">
-                <h2 class=" text-primary-light text-3xl font-extrabold tracking-tighter sm:text-4xl mb-3">{{ positionTitle }}</h2>
-                <div class="flex-none mb-4" v-for="opportunity in value" :key="opportunity.id">
+        <div v-auto-animate class="grid grid-cols-3 gap-16 mt-16 m-auto max-w-3xl">
+            <div class="col-span-1" v-for="[positionTitle, value] in reactiveMap" :key="index">
+                <h2 class="text-primary-light text-3xl font-extrabold tracking-tighter sm:text-4xl mb-3">{{ positionTitle }}</h2>
+                <div class="mb-4" v-for="opportunity in value" :key="opportunity.id">
                     <p class="font-medium italic text-lg"> "{{ opportunity.title }}"</p>
                     <p class="text-gray-500">Shooting Period: {{ typeof(opportunity.shootStart) === "string" ? opportunity.shootStart : opportunity.shootStart.toDate().toDateString() }} to {{ typeof(opportunity.shootEnd) === "string" ? opportunity.shootEnd : opportunity.shootEnd.toDate().toDateString() }}</p>
                     <p>Contact: <a class="text-primary-light font-medium underline decoration-2" :href="'mailto:' + opportunity.contact"> {{ opportunity.contact }}</a></p>

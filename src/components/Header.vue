@@ -82,6 +82,7 @@
 
             <!-- TODO: reactivate screenings -->
             <!-- <router-link to="/screenings" class="text-base font-medium text-gray-500 hover:text-gray-900"> Screenings </router-link> -->
+            <router-link to="/membership" class="text-base font-medium text-gray-500 hover:text-gray-900"> Membership </router-link>
             <router-link to="/resources" class="text-base font-medium text-gray-500 hover:text-gray-900"> Resources </router-link>
             <router-link to="/about" class="text-base font-medium text-gray-500 hover:text-gray-900"> About </router-link>
 

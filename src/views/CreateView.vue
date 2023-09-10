@@ -84,7 +84,7 @@
             <!-- check if there are vacancies with a checkbox. if there are, ask for the position titles, which are predefined in a dropdown -->
             <div class="px-4 py-4">
                 <label class="flex flex-row items-center gap-4 justify-center label cursor-pointer text-primary-light" for="vacancies">
-                    <span class="">Looking for additional crew memebers?</span> 
+                    <span class="">Looking for additional crew members?</span> 
                     <input class="checkbox checkbox-sm" type="checkbox" id="vacancies" v-model="vacancies" />
                 </label>
             </div>
@@ -214,6 +214,35 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- check if they are looking for actors with a checkbox. if there are, ask for the characters' names and descriptions -->
+            <div class="px-4 py-4">
+                <label class="flex flex-row items-center gap-4 justify-center label cursor-pointer text-primary-light" for="actors">
+                    <span class="">Looking for actors?</span> 
+                    <input class="checkbox checkbox-sm" type="checkbox" id="actors" v-model="actors" />
+                </label>
+            </div>
+
+            <div v-auto-animate @submit.prevent="submitForm">
+                <div v-if="actors" class="flex flex-col w-full px-4 py-4 gap-4">
+                    <label class="text-primary-light">Characters Needed</label>
+                    <ul class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50">
+                        <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600" v-for="(character, index) in characters" :key="index">
+                            <div class="flex flex-col py-2 gap-2">
+                                <label class="text-primary-light" for="characterName">Character Name</label>
+                                <input required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" v-model="character.name" placeholder="Enter character name" />
+
+                                <label class="text-primary-light" for="characterDescription">Description</label>
+                                <textarea required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary-light focus:ring focus:ring-primary-light focus:ring-opacity-50" v-model="character.description" placeholder="Enter character description"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <button type="button" @click="addCharacter" class="btn w-full px-4 py-2 text-white bg-primary-light rounded-md shadow-sm hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-light focus:ring-opacity-50">Add Another Character</button>
+                </div>
+            </div>
+
+
+
             <div class="px-4 py-4">
                 <label class="flex flex-row items-center gap-4 justify-center label cursor-pointer text-primary-light" for="screening">
                     <span class="text-primary-light" for="screening">Is the film screening?</span>
@@ -273,8 +302,10 @@ export default {
       positions: [],
       vacancies: false,
       screening: false,
+      actors: false,
       screenDate: '',
-      user: store.getters.userEmail
+      user: store.getters.userEmail,
+      characters: [{ name: '', description: '' }],
     };
   },
   methods: {
@@ -330,15 +361,20 @@ export default {
         shootEnd: this.shootEnd === "" ? "TBD" : new Date(Date.parse(this.shootEnd)),
         vacancies: this.vacancies,
         screening: this.screening,
+        actors: this.actors,
         screenDate: this.screenDate === "" ? "TBD" : new Date(Date.parse(this.screenDate)),
         user: store.getters.userEmail,
+        roles: this.characters,
       };
 
     //   this.showModal.value.push("success")
       document.getElementById("my-modal").checked = true;
-      console.log("sending film to firebase!")
-      console.log(document.getElementById("my-modal"))
+      console.log(this.characters);
       await addDoc(collection(db, "productions"), film);
+    },
+
+    addCharacter() {
+        this.characters.push({ name: '', description: '' });
     },
 
     redirectToOpportunitiesForFilmmakers() {

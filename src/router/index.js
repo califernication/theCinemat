@@ -72,6 +72,12 @@ const router = createRouter({
 
         return true
       }),
+    }, 
+    {
+      path: '/membership',
+      name: 'membership',
+
+      component: () => import('../views/MembershipView.vue')
     },
     {
       path: '/edit',

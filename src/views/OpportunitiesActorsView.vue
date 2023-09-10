@@ -12,7 +12,7 @@
       <div v-for="production in productions" class="bg-white shadow rounded-lg p-6 flex flex-col">
         <h2 class="text-2xl text-primary-light font-bold mb-2">{{ production.title }}</h2>
         <p class="text-gray-700 mb-2">dir. {{ production.director }}</p>
-        <p class="text-gray-700 mb-2">Shooting Period: {{ production.shootStart }} to {{ production.shootEnd }}</p>
+        <p class="text-gray-700 mb-2">Shooting Period: {{ formatDate(production.shootStart) }} to {{ formatDate(production.shootEnd) }}</p>
         <p class="text-gray-700 mb-2">Contact: <a class="text-primary-light font-medium underline decoration-2" :href="'mailto:' + production.contact"> {{ production.contact }}</a></p>
         <p class="text-sm text-gray-700 mb-6 italic">{{ production.description }}</p>
         <ul class="list-disc px-5">
@@ -55,6 +55,28 @@ onMounted(async () => {
   });
   productions.value = fbOpp
 });
+
+function formatDate(firebaseTimestamp) {
+    if (firebaseTimestamp === "TBD") {
+        return "TBD";
+    }
+    const date = firebaseTimestamp.toDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const day = date.getDate();
+
+    let suffix = 'th';
+    if (day === 1 || day === 21 || day === 31) {
+        suffix = 'st';
+    } else if (day === 2 || day === 22) {
+        suffix = 'nd';
+    } else if (day === 3 || day === 23) {
+        suffix = 'rd';
+    }
+
+    const year = date.getFullYear();
+
+    return `${month} ${day}${suffix}, ${year}`;
+}
 
 </script>
   
